@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "8"
+  - "15.2.1"
 dist: xenial  
 sudo: required
 services:
