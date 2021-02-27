@@ -4,8 +4,9 @@
   "description": "Dronuts Repository",
   "main": "index.js",
   "scripts": {
+    "start": "concurrently \"(cd backend && npm start)\" \"(cd frontend && npm start)\"",
     "test": "",
-		"lint": "eslint . --fix"
+    "lint": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/CMU-17-356/dronuts2021-team-3#readme",
   "dependencies": {
+    "concurrently": "^6.0.0",
     "create-react-app": "^4.0.3",
     "express": "^4.17.1",
     "typescript": "^4.2.2"
