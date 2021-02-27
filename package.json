@@ -1,0 +1,35 @@
+{
+  "name": "dronuts2021-team-3",
+  "version": "1.0.0",
+  "description": "Dronuts Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+		"lint": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CMU-17-356/dronuts2021-team-3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CMU-17-356/dronuts2021-team-3/issues"
+  },
+  "homepage": "https://github.com/CMU-17-356/dronuts2021-team-3#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.3",
+    "express": "^4.17.1",
+    "typescript": "^4.2.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.21.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.22.0"
+  }
+}
