@@ -2,7 +2,7 @@ version: '3'
 services:
 
   your_app:
-    container_name: your_app
+    container_name: dronuts2021_team_3
     build: ./
     ports:
       - "80:80"

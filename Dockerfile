@@ -1,5 +1,5 @@
 FROM node:alpine3.11
-MAINTAINER <GROUP_NAME_HERE>
+MAINTAINER TEAM_3
 
 # Change working directory
 WORKDIR /usr/src/app
