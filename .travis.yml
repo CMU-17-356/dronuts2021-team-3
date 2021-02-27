@@ -14,8 +14,8 @@ env:
     - DOCKER_MACHINE_NAME="<REPOSITORY_NAME>"
 
 script:
-  - cd backend && npm test
-  - cd frontend && npm test
+  - (cd backend && npm test)
+  - (cd frontend && npm test)
   - docker-compose build
 
 deploy:
