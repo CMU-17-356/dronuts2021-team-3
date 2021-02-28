@@ -25,4 +25,4 @@ deploy:
   provider: script
   script: docker-compose up --build -d --remove-orphans
   on:
-    branch: master
+    branch: main
