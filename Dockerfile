@@ -4,15 +4,10 @@ MAINTAINER TEAM_3
 # Change working directory
 WORKDIR /usr/src/app
 
-# Install App Dependencies
-COPY package*.json ./
-RUN npm install
-RUN (cd backend && npm install)
-RUN (cd frontend && npm install)
-
 # Copy App Source
 COPY . .
 #TODO Run any build scripts here
 
-EXPOSE 80
-CMD [ "npm", "start" ]
+# Install App Dependencies
+COPY package*.json ./
+RUN npm install

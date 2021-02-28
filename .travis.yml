@@ -13,14 +13,16 @@ env:
     - DOCKER_CERT_PATH="./azure"
     - DOCKER_MACHINE_NAME="dronuts2021-team-3"
 
+install:
+  - npm install
 script:
-  - (cd backend && npm install && npm test)
-  - (cd frontend && npm install && npm test)
-  - docker-compose build
+  - npm run lint
+  - (cd backend && npm test)
+  - (cd frontend && npm test)
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose up -d --remove-orphans
+  script: docker-compose up --build -d --remove-orphans
   on:
     branch: master

@@ -1,9 +1,9 @@
 version: '3'
 services:
 
-  your_app:
+  dronuts:
     container_name: dronuts2021_team_3
     build: ./
     ports:
-      - "80:80"
+      - "80"
     restart: always
