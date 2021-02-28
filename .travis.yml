@@ -19,10 +19,11 @@ script:
   - npm run lint
   - (cd backend && npm test)
   - (cd frontend && npm test)
+  - travis_wait 30 docker-compose build
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: travis_wait 30 docker-compose up -d --build --force-recreate --remove-orphans
+  script: docker-compose up -d --force-recreate --remove-orphans
   on:
     branch: main
