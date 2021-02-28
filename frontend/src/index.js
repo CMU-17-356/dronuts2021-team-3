@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { GeistProvider, CssBaseline } from '@geist-ui/react'
+
+const Application = () => (
+  <GeistProvider>
+    <CssBaseline /> // ---> Normalize styles
+    <App /> // ---> Your App Component
+  </GeistProvider>
+)
 
 ReactDOM.render(
   <React.StrictMode>
