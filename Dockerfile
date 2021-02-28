@@ -4,10 +4,11 @@ MAINTAINER TEAM_3
 # Change working directory
 WORKDIR /usr/src/app
 
+# Install App Dependencies
+COPY package*.json ./
+
 # Copy App Source
 COPY . .
 #TODO Run any build scripts here
 
-# Install App Dependencies
-COPY package*.json ./
 RUN npm install

@@ -23,6 +23,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose up --build -d --remove-orphans
+  script: docker-compose up -d --build --force-recreate --remove-orphans
   on:
     branch: main
