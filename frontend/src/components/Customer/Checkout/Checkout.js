@@ -4,7 +4,7 @@ import React from 'react';
 
 const Checkout = () => {
   return (
-    <div class="checkout">
+    <div className="checkout">
         <h1>Checkout</h1>
     </div>
   );

@@ -4,7 +4,7 @@ import React from 'react';
 
 const Drones = () => {
   return (
-    <div class="drones">
+    <div className="drones">
         <h1>Drones</h1>
     </div>
   );
