@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
 
+import Navbar from './components/Navbar/Navbar';
+
+// Employee view components
+// import Orders from './components/Employee/Orders/Orders';
+// import Drones from './components/Employee/Drones/Drones';
+
+// Customer view components
+// import Menu from './components/Customer/Menu/Menu';
+// import Cart from './components/Customer/Cart/Cart';
+import Checkout from './components/Customer/Checkout/Checkout';
+
 function App() {
+  // TODO: Add Login Tokens
+  if(true) {
+    return (
+      <div>
+        <Navbar />
+        <Checkout />
+      </div>
+    )
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar />
     </div>
   );
 }
