@@ -23,6 +23,6 @@ script:
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose up -d --build --force-recreate --remove-orphans
+  script: travis_wait 30 docker-compose up -d --build --force-recreate --remove-orphans
   on:
     branch: main
