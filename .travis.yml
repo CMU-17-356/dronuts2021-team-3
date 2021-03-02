@@ -19,7 +19,7 @@ script:
   - npm run lint
   - (cd backend && npm test)
   - (cd frontend && npm test)
-  - docker-compose build -rm
+  - docker-compose build --force-rm
 
 deploy:
   skip_cleanup: true
