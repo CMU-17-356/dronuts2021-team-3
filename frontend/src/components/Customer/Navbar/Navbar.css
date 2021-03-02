@@ -1,0 +1,51 @@
+.navbar-cust {
+    display: grid;
+    grid-template-columns: 3fr 3fr;
+    background: navy;
+    position: sticky;
+    top: 0;
+}
+
+.nav-cust-menu {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-gap: 50px;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-cust-logo {
+    width: 20%;
+    justify-content: center;
+    margin: 10px 50px 10px 100px;
+}
+
+.nav-cust-items {
+
+}
+
+.nav-cust-items h3 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    color: palevioletred;
+    font-variant: small-caps;
+}
+
+.nav-cust-items h3:hover{
+    color: white;
+}
+
+.nav-cust-button h3{
+    color: navy;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.nav-cust-button:hover{
+    background-color: white;
+}
+
+.nav-cust-button{
+    background-color: palevioletred;
+    padding: 5px 10px 0px 10px;
+    border-radius: 15px;
+}

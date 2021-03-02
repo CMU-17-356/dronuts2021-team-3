@@ -1,0 +1,103 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;   
+}
+
+.orders {
+    height: 100%;
+    background-color: palevioletred;
+}
+
+.orders-header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.orders-header h1 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
+.order-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(400px, 1fr));
+    grid-gap: 1.5rem;
+    margin: 20px;
+}
+
+.order-num {
+    background-color: palevioletred;
+    align-items: center;
+    text-align: center;
+}
+
+.order-num h3 {
+    color: navy;
+}
+
+.order-item {
+    border: navy;
+    border-style: solid;
+    background-color: navy;
+}
+
+.order-list {
+}
+
+.order-list ul {
+    list-style: circle;
+}
+
+.order-list ul li {
+    list-style: circle;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 120%;
+    color: palevioletred;
+}
+
+.order-list ul li::before{
+    content: '';
+}
+
+.order-done-button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.order-done-button button {
+    box-shadow: 1px 2px palevioletred;
+    width: 50%;
+    color: navy;
+    font-weight: bold;
+    background-color: palevioletred;
+    border-radius: 10px;
+    box-shadow: 1px 2px navy;
+}
+
+.order-done-button button:hover {
+    background-color: white;
+}
+
+.list-item {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
