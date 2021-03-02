@@ -16,7 +16,7 @@ import Donut_12 from './Donut_12.png'
 
 const Menu = () => {
   return (
-    <body>
+    <div>
     <div className="menu-header"><h4>Go nuts for DRONUTS!</h4></div>
     <div className="menu">
         
@@ -129,7 +129,7 @@ const Menu = () => {
           </div>
         </div>                                                       
     </div>
-    </body>
+    </div>
   );
 };
 

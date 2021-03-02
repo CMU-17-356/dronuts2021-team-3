@@ -4,8 +4,6 @@ import './Orders.css';
 
 const Orders = () => {
   return (
-    <html>
-    <body>
     <div className="orders">
       <div className="orders-header"><h1 >Orders</h1></div>
       <div className="order-grid">
@@ -98,8 +96,6 @@ const Orders = () => {
         </div>
       </div>
     </div>
-    </body>
-    </html>
   );
 };
 
