@@ -7,6 +7,10 @@ WORKDIR /usr/src/app
 # Install App Dependencies
 COPY package*.json ./
 
+COPY /backend/package*.json ./backend
+
+COPY /frontend/package*.json ./frontend
+
 # Copy App Source
 COPY . .
 #TODO Run any build scripts here
