@@ -22,110 +22,110 @@ const Menu = () => {
         
         <div className="container">
           <div><img className="menu-item" src={Donut_1} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_2} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_3} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_4} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_5} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_6} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_7} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_8} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_9} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_10} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_11} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>
         <div className="container">
           <div><img className="menu-item" src={Donut_12} alt=""></img></div>
-          <div class="overlay">
-            <div class="text">
-            <div class="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
+          <div className="overlay">
+            <div className="text">
+            <div className="item-text">VANILLA ICING WITH BUTTERCREAM AND COOKIES <br/> $2.49 </div>
             </div>
-            <div class="add-to-cart-button"><button>Add to Cart</button></div>
+            <div className="add-to-cart-button"><button>Add to Cart</button></div>
           </div>
         </div>                                                       
     </div>
