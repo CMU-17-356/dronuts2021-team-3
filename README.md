@@ -15,8 +15,11 @@
 2. The frontend will run on localhost:3000
 3. The backend will run on localhost:9000
 
-# Making Changes
+### Making Changes
 1. Make changes in a branch separate from main
 2. Lint and test your code
 3. Make a pull request for your branch
 4. After pull request is reviewed and approved, merge into main
+
+### HW3 Submission
+https://docs.google.com/document/d/e/2PACX-1vTxVIk59vMeQTjMbkVmLTkVg_glp6qJ4dT-A6AJT7HnAaEmGB5UR-vKtPpKqNpwyvVfEYPfsWfU00Fj/pub
