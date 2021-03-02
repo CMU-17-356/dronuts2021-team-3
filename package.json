@@ -4,7 +4,7 @@
   "description": "Dronuts Repository",
   "main": "index.js",
   "scripts": {
-    "postinstall": "concurrently \"(cd backend && npm install)\" \"(cd frontend && npm install)\"",
+    "postinstall": "(cd backend && npm install) && (cd frontend && npm install)",
     "start": "concurrently \"(cd backend && npm start)\" \"(cd frontend && npm start)\"",
     "test": "(cd backend && npm test) && (cd frontend && npm test)",
     "lint": "eslint . --fix"
