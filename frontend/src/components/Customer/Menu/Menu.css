@@ -1,0 +1,98 @@
+html, body {
+    background-color: palevioletred;
+    height: 100%;
+    width: 100%;
+}
+
+.menu {
+    width: 100%;
+    background-color: palevioletred;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(341px, 1fr));
+    grid-gap: 1.5rem;
+    justify-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+.container {
+    position: relative;
+    margin: 10px;
+  }
+
+.overlay {
+    display: grid;
+    position: absolute;
+    grid-template-rows: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #96e3fd;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+.overlay button {
+    justify-content: last baseline;
+    align-items: center;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 1px 2px navy;
+    color: navy;
+    font-weight: bold;
+    background-color: palevioletred;
+}
+
+.overlay button:hover {
+    background-color: white;
+}
+
+.item-text{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-variant: small-caps;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: navy;
+}
+  /* The Images */
+.menu-item {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: opacity 0.25s ease-in-out;
+    display: block;
+  }
+  
+  .container:hover .overlay {
+    opacity: 0.85;
+  }
+  
+.menu-item:hover {
+    opacity: .7;
+  }
+
+.menu-header {
+    display: flex;
+    background-color: palevioletred;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.menu-header h4 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    color: navy;
+    font-style: italic;
+}

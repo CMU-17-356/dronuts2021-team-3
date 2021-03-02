@@ -1,0 +1,21 @@
+import React from 'react';
+import './Navbar.css';
+import Dronut_Logo from './Dronut_Logo.png'
+// component imports
+
+const NavbarEmployee = () => {
+  return (
+    <div className="navbar-emp">
+        <div id="nav-emp-left">
+            <h4><a href="/#"><img className="nav-emp-logo" src={Dronut_Logo} alt=""></img></a></h4>
+        </div>
+        <div id="nav-emp-right" className="nav-emp-menu">
+            <div className="nav-emp-items"><a href="/#"><h3>Orders</h3></a></div>
+            <div className="nav-emp-items"><a href="/#"><h3>Drones</h3></a></div>
+            <div className="nav-emp-items"><a href="/#"><h3>Sign In</h3></a></div>            
+        </div>
+    </div>
+  );
+};
+
+export default NavbarEmployee;
