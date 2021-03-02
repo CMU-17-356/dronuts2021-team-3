@@ -14,7 +14,7 @@ env:
     - DOCKER_MACHINE_NAME="dronuts2021-team-3"
 
 install:
-  - npm install --legacy-peer-deps
+  - npm install
 script:
   - npm run lint
   - (cd backend && npm test)
