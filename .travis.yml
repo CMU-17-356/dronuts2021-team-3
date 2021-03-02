@@ -19,7 +19,7 @@ script:
   - npm run lint
   - (cd backend && npm test)
   - (cd frontend && npm test)
-  - travis_wait 30 docker-compose build
+  - travis_wait 60 docker-compose build
 
 deploy:
   skip_cleanup: true
