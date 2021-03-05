@@ -1,14 +1,13 @@
-const db = require("../models");
+const db = require('../models')
 const models = require('../models/models')
-const ROLES = db.ROLES;
-const User = db.user;
+const User = db.user
 
-checkDuplicateUsername = (req, res, next) => {
-  const result = models.user.validate(req.body);
+const checkDuplicateUsername = (req, res, next) => {
+  const result = models.user.validate(req.body)
   if (result.error) {
     return res.status(400).send({
       message: result.error.message
-    });
+    })
   }
 
   // Username
@@ -19,13 +18,12 @@ checkDuplicateUsername = (req, res, next) => {
   }).then(user => {
     if (user) {
       return res.status(400).send({
-        message: "Failed! Username is already in use!"
-      });
+        message: 'Failed! Username is already in use!'
+      })
+    } else {
+      return next()
     }
-    else {
-      return next();
-    }
-  });
+  })
 }
 
 const verifyRegister = {

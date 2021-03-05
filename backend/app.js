@@ -12,8 +12,8 @@ const testRouter = require('./routes/test')
 
 const app = express()
 
-var corsOptions = {
-  origin: "http://localhost:3000"
+const corsOptions = {
+  origin: 'http://localhost:3000'
 }
 
 // view engine setup
@@ -31,11 +31,10 @@ app.use(cors(corsOptions))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
 // routes
-app.use('/', indexRouter);
-app.use('/auth', authRouter);
-app.use('/test', testRouter);
+app.use('/', indexRouter)
+app.use('/auth', authRouter)
+app.use('/test', testRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -54,8 +53,7 @@ app.use(function (err, req, res, next) {
 })
 
 const db = require('./models')
-const User = db.user
 
-db.sequelize.sync();
+db.sequelize.sync()
 
 module.exports = app
