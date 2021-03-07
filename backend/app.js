@@ -3,11 +3,18 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const cors = require('cors')
+const bodyParser = require('body-parser')
 
 const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
+const authRouter = require('./routes/auth')
+const testRouter = require('./routes/test')
 
 const app = express()
+
+const corsOptions = {
+  origin: 'http://localhost:3000'
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -19,8 +26,15 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
+app.use(cors(corsOptions))
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// routes
 app.use('/', indexRouter)
-app.use('/users', usersRouter)
+app.use('/auth', authRouter)
+app.use('/test', testRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,5 +51,9 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500)
   res.render('error')
 })
+
+const db = require('./models')
+
+db.sequelize.sync()
 
 module.exports = app
