@@ -1,8 +1,9 @@
 module.exports = {
-  HOST: 'localhost',
-  USER: 'postgres',
-  PASSWORD: 'team3pass',
-  DB: 'postgresdb',
+  HOST: 'dronuts2021-team-3-postgres.postgres.database.azure.com',
+  PORT: 5432,
+  USER: 'postgres@dronuts2021-team-3-postgres',
+  PASSWORD: 'team3dronuts!',
+  DB: 'postgres',
   dialect: 'postgres',
   pool: {
     max: 5,
