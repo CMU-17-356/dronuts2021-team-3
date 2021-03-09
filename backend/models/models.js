@@ -43,7 +43,7 @@ const order = Joi.object({
   date_time_ordered: Joi.date().timestamp('unix'),
   total_cost: Joi.number().min(0).precision(2).default(0),
   delivery_status: Joi.string().default('not paid').valid('delivered', 'not paid', 'delivering', 'failed'),
-  order_address: Joi.string().default(''),
+  order_address: Joi.string().default('')
 })
 
 module.exports = {

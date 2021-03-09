@@ -84,7 +84,6 @@ describe('Testing Product', () => {
       product_id: 123,
       name: 'Hazelnut',
       in_stock: true,
-      ingredients: ['Hazelnut', 'Bread', 'Chocolate'],
       price: 3.49
     })
     expect(result.error).toBe(undefined)
