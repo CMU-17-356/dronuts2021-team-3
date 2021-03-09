@@ -29,17 +29,21 @@ const product = Joi.object({
   product_id: Joi.number().integer().required(),
   name: Joi.string().required(),
   in_stock: Joi.boolean().required(),
-  ingredients: Joi.array().items(Joi.string()),
   price: Joi.number().positive().precision(2).required()
+})
+
+const ingredient = Joi.object({
+  ingredient_id: Joi.number().integer().required(),
+  name: Joi.string().required()
 })
 
 const order = Joi.object({
   order_id: Joi.number().integer().required(),
-  payment_status: Joi.string().required().valid('paid', 'pending'),
+  payment_status: Joi.string().default('pending').valid('paid', 'pending'),
   date_time_ordered: Joi.date().timestamp('unix'),
-  total_cost: Joi.number().positive().precision(2).required(),
-  delivery_status: Joi.string().required().valid('delivered', 'not paid', 'delivering', 'failed'),
-  order_address: Joi.string().required()
+  total_cost: Joi.number().min(0).precision(2).default(0),
+  delivery_status: Joi.string().default('not paid').valid('delivered', 'not paid', 'delivering', 'failed'),
+  order_address: Joi.string().default('')
 })
 
 module.exports = {
@@ -47,5 +51,6 @@ module.exports = {
   drone: drone,
   store: store,
   product: product,
+  ingredient: ingredient,
   order: order
 }
