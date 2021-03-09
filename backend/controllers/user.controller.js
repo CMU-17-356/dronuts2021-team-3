@@ -2,30 +2,17 @@ const db = require('../models')
 const Order = db.order
 const Product = db.product
 const OrderProduct = db.orderproduct
-const User = db.user
 
 exports.createOrder = (req, res) => {
-  User.findOne({
-    where: {
-      username: req.body.username
-    }
+  Order.create({
+    username: req.body.username
   })
-    .then(user => {
-      if (!user) {
-        return res.status(404).send({ message: 'User Not found.' })
-      }
-
-
-      var order = Order.create
-
-      user.orders.add(order)
-      user.save()
-
-      return res.send({ message: 'Order was created.' })
+    .then(order => {
+      res.send({ message: 'Order was created.' })
     })
 
     .catch(err => {
-      return res.status(500).send({ message: err.message })
+      res.status(500).send({ message: err.message })
     })
 }
 

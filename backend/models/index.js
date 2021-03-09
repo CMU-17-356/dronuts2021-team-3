@@ -32,28 +32,26 @@ db.product = require('../models/product.model.js')(sequelize, Sequelize)
 db.ingredient = require('../models/ingredient.model.js')(sequelize, Sequelize)
 
 db.user.hasMany(db.order, {
-  foreignKey: 'order_id'
-})
-db.order.belongsTo(db.user, {
   foreignKey: 'username'
 })
+db.order.belongsTo(db.user)
 
 db.orderproduct = sequelize.define('OrderProduct')
 db.order.belongsToMany(db.product, {
-  foreignKey: 'product_id',
+  foreignKey: 'order_id',
   through: 'OrderProduct'
 })
 db.product.belongsToMany(db.order, {
-  foreignKey: 'order_id',
+  foreignKey: 'product_id',
   through: 'OrderProduct'
 })
 
 db.product.belongsToMany(db.ingredient, {
-  foreignKey: 'ingredient_id',
+  foreignKey: 'product_id',
   through: 'ProductIngredient'
 })
 db.ingredient.belongsToMany(db.product, {
-  foreignKey: 'product_id',
+  foreignKey: 'ingredient_id',
   through: 'ProductIngredient'
 })
 
