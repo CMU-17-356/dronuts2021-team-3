@@ -6,8 +6,8 @@ services:
     restart: always
     environment:
       POSTGRES_USER: postgres,
-      POSTGRES_PASSWORD: team3pass,
-      POSTGRES_DB: postgresdb,
+      POSTGRES_PASSWORD: team3dronuts!,
+      POSTGRES_DB: postgres,
 
   dronuts:
     container_name: dronuts2021-team-3
