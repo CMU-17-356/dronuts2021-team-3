@@ -27,6 +27,35 @@ db.Sequelize = Sequelize
 db.sequelize = sequelize
 
 db.user = require('../models/user.model.js')(sequelize, Sequelize)
+db.order = require('../models/order.model.js')(sequelize, Sequelize)
+db.product = require('../models/product.model.js')(sequelize, Sequelize)
+db.ingredient = require('../models/ingredient.model.js')(sequelize, Sequelize)
+
+db.user.hasMany(db.order, {
+  foreignKey: 'order_id'
+})
+db.order.belongsTo(db.user, {
+  foreignKey: 'username'
+})
+
+db.orderproduct = sequelize.define('OrderProduct')
+db.order.belongsToMany(db.product, {
+  foreignKey: 'product_id',
+  through: 'OrderProduct'
+})
+db.product.belongsToMany(db.order, {
+  foreignKey: 'order_id',
+  through: 'OrderProduct'
+})
+
+db.product.belongsToMany(db.ingredient, {
+  foreignKey: 'ingredient_id',
+  through: 'ProductIngredient'
+})
+db.ingredient.belongsToMany(db.product, {
+  foreignKey: 'product_id',
+  through: 'ProductIngredient'
+})
 
 db.ROLES = ['employee', 'customer']
 
