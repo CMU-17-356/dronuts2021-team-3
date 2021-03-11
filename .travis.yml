@@ -12,6 +12,7 @@ env:
     - DOCKER_HOST="tcp://40.83.140.149:2376"
     - DOCKER_CERT_PATH="./azure"
     - DOCKER_MACHINE_NAME="dronuts2021-team-3"
+    - YARN_GPG=no
 
 install:
   - npm install
