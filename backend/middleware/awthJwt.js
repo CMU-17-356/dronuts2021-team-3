@@ -40,9 +40,26 @@ const isEmployee = (req, res, next) => {
   })
 }
 
+const isCustomer = (req, res, next) => {
+  User.findOne({
+    where: {
+      username: req.username
+    }
+  }).then(user => {
+    if (user.user_type === 'customer') {
+      return next()
+    }
+
+    return res.status(403).send({
+      message: 'Require Customer Role!'
+    })
+  })
+}
+
 const authJwt = {
   verifyToken: verifyToken,
-  isEmployee: isEmployee
+  isEmployee: isEmployee,
+  isCustomer: isCustomer
 }
 
 module.exports = authJwt
