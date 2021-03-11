@@ -1,0 +1,188 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;   
+}
+
+.register {
+    display: grid;
+    grid-template-columns:50% 50%;
+    background-color: navy;
+    height: 100vh;
+}
+
+.register-left {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.register-left h2 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: palevioletred;
+}
+
+.register-logo {
+    width: 50%;
+}
+
+.register-form {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.register-header {
+    margin: 20px;
+}
+
+.register-header h2 {
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.register-username {
+    margin: 15px;
+}
+
+.register-username input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-username input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-firstname {
+    margin: 15px;
+}
+
+.register-firstname input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-firstname input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-lastname {
+    margin: 15px;
+}
+
+.register-lastname input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-lastname input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-address {
+    margin: 15px;
+}
+
+.register-address input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-address input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-contact {
+    margin: 15px;
+}
+
+.register-contact input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-contact input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-email {
+    margin: 15px;
+}
+
+.register-email input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-email input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-password {
+    margin: 15px;
+}
+
+.register-password input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.register-password input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.register-form p {
+    text-decoration-color: palevioletred;
+    color: palevioletred;
+    text-decoration: underline;
+}
+.register-button h3{
+    color: navy;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.register-button:hover{
+    background-color: white;
+}
+
+.register-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.register-button{
+    background-color: palevioletred;
+    padding: 5px 10px 0px 10px;
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: 110px;
+}

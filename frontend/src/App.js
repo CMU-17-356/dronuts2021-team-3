@@ -11,7 +11,10 @@ import Orders from './components/Employee/Orders/Orders';
 // Customer view components
 import Menu from './components/Customer/Menu/Menu';
 // import Cart from './components/Customer/Cart/Cart';
-//import Checkout from './components/Customer/Checkout/Checkout';
+import Checkout from './components/Customer/Checkout/Checkout';
+import Login from './components/Login/Login';
+import Registration from './components/Login/Registration';
+import Profile from './components/Customer/Profile/Profile';
 
 function App() {
   if(true) {
@@ -23,9 +26,33 @@ function App() {
                 <NavbarCustomer />
                 <Menu />
               </Route>
-              <Route path="/employee" exact>
+              <Route path="/login" exact>
+                <NavbarCustomer />
+                <Login />
+              </Route>
+              <Route path="/register" exact>
+                <NavbarCustomer />
+                <Registration />
+              </Route>
+              <Route path="/checkout" exact>
+                <NavbarCustomer />
+                <Checkout />
+              </Route>
+              <Route path="/profile" exact>
+                <NavbarCustomer />
+                <Profile />
+              </Route>
+              <Route path="/employee/orders" exact>
                 <NavbarEmployee />
                 <Orders />
+              </Route>
+              <Route path="/employee/login" exact>
+                <NavbarEmployee />
+                <Login />
+              </Route>
+              <Route path="/employee/register" exact>
+                <NavbarEmployee />
+                <Registration />
               </Route>
           </Switch>
         </BrowserRouter>

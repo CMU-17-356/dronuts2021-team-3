@@ -1,0 +1,116 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;  
+    height: auto; 
+}
+
+.checkout {
+    height: 1auto;
+    background-color: palevioletred;
+}
+
+.checkout-header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+
+.checkout-header h1 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
+table {
+    border: 1px solid palevioletred;
+    margin: 0 auto; 
+    background-color: navy;
+}
+
+td, th {
+    border: 1px solid palevioletred;
+    padding: 0.5rem;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: palevioletred;
+    font-weight: bolder;
+    font-size: 150%;
+}
+
+.item-col {
+    min-width: 400px;
+}
+
+.quantity-col {
+    width: 80px;
+}
+
+.price-col {
+    width: 60px;
+}
+
+.image-item {
+    height: 100px;
+    width: auto;
+}
+
+.total-amount{
+    margin: 10px;
+}
+
+.total-amount h2{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;    
+}
+
+.place-order-button{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    background-color: navy;
+    width: fit-content;
+    margin-left: 44vw;
+    margin-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.place-order-button h2{
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.place-order-button:hover{
+    background-color: white;
+}
+
+.total-amount{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;    
+}
+
+.checkout-table {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

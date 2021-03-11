@@ -55,12 +55,12 @@ html, body {
 
 .item-text{
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
-    font-style: italic;
     font-weight: bold;
     font-variant: small-caps;
     justify-content: center;
     align-items: center;
     text-align: center;
+    font-size: 120%;
     color: navy;
 }
   /* The Images */

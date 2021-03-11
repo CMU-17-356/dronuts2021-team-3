@@ -2,8 +2,6 @@
     display: grid;
     grid-template-columns: 3fr 3fr;
     background: navy;
-    position: sticky;
-    top: 0;
 }
 
 .nav-cust-menu {
