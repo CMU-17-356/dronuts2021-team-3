@@ -11,12 +11,13 @@ const user = Joi.object({
 })
 
 const drone = Joi.object({
-  drone_id: Joi.string().required(),
+  drone_id: Joi.number().integer().required(),
+  drone_name: Joi.string().required(),
+  location_lat: Joi.number().precision(8).required(),
+  location_lng: Joi.number().precision(8).required(),
   battery_capacity: Joi.number().integer().positive().required(),
-  location: Joi.string().required(),
-  drone_status: Joi.string().required().valid('delivering', 'charging', 'returning', 'ready', 'broken'),
-  maximum_load: Joi.number().integer().positive().required(),
-  current_load: Joi.number().integer().positive().required()
+  battery_charge: Joi.number().integer().positive().required(),
+  drone_status: Joi.string().required().valid('delivering', 'charging', 'returning', 'ready', 'broken')
 })
 
 const store = Joi.object({
@@ -42,7 +43,7 @@ const order = Joi.object({
   payment_status: Joi.string().default('pending').valid('paid', 'pending'),
   date_time_ordered: Joi.date().timestamp('unix'),
   total_cost: Joi.number().min(0).precision(2).default(0),
-  delivery_status: Joi.string().default('not paid').valid('delivered', 'not paid', 'delivering', 'failed'),
+  delivery_status: Joi.string().default('not paid').valid('delivered', 'not paid', 'preparing', 'ready for delivery', 'delivering', 'failed'),
   order_address: Joi.string().default('')
 })
 

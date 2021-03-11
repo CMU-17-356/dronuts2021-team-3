@@ -148,3 +148,19 @@ exports.checkout = (req, res) => {
       res.status(500).send({ message: err.message })
     })
 }
+
+exports.getMenu = (req, res) => {
+  Product.findAll({
+    order: [
+      ['product_id', 'ASC']
+    ]
+  })
+    .then(product => {
+      res.status(200).send({
+        product: product.toJSON()
+      })
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message })
+    })
+}

@@ -54,4 +54,11 @@ router.post(
   }
 )
 
+router.get(
+  '/getmenu',
+  function (req, res, next) {
+    controller.getMenu(req, res, next)
+  }
+)
+
 module.exports = router
