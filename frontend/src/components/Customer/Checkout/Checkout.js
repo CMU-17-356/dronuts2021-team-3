@@ -4,14 +4,7 @@ import Donut_1 from '../Menu/Donut_1.png'
 import Donut_2 from '../Menu/Donut_2.png'
 import Donut_3 from '../Menu/Donut_3.png'
 import Donut_4 from '../Menu/Donut_4.png'
-import Donut_5 from '../Menu/Donut_5.png'
-import Donut_6 from '../Menu/Donut_6.png'
-import Donut_7 from '../Menu/Donut_7.png'
-import Donut_8 from '../Menu/Donut_8.png'
-import Donut_9 from '../Menu/Donut_9.png'
-import Donut_10 from '../Menu/Donut_10.png'
-import Donut_11 from '../Menu/Donut_11.png'
-import Donut_12 from '../Menu/Donut_12.png'
+
 // component imports
 
 const Checkout = () => {
@@ -63,7 +56,7 @@ const Checkout = () => {
       <h2>Total Amount: $29.88</h2>
     </div>
     <div className="place-order-button">
-            <a href="#"><h2>Place Order</h2></a>
+            <h2>Place Order</h2>
     </div>
     </div>
   );
