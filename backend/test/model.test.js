@@ -35,24 +35,26 @@ describe('Testing User', () => {
 describe('Testing Drone', () => {
   it('Valid Drone', () => {
     const result = models.drone.validate({
-      drone_id: 'drone1',
-      battery_capacity: 50,
-      location: 'Squirrel Hill',
-      drone_status: 'delivering',
-      maximum_load: 10,
-      current_load: 8
+      drone_id: 21,
+      drone_name: 'drone21',
+      location_lat: 12.12345678,
+      location_lng: 13.12345678,
+      battery_capacity: 500,
+      battery_charge: 400,
+      drone_status: 'delivering'
     })
     expect(result.error).toBe(undefined)
   })
 
   it('Invalid drone (invalid drone_status)', () => {
     const result = models.drone.validate({
-      drone_id: 'drone2',
-      battery_capacity: 50,
-      location: 'Squirrel Hill',
-      drone_status: 'sleep',
-      maximum_load: 10,
-      current_load: 8
+      drone_id: 21,
+      drone_name: 'drone21',
+      location_lat: 12.12345678,
+      location_lng: 13.12345678,
+      battery_capacity: 500,
+      battery_charge: 400,
+      drone_status: 'sleep'
     })
     expect(result.error).not.toBe(null)
   })
