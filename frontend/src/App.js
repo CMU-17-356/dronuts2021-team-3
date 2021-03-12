@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // Employee view components
 import Orders from './components/Employee/Orders/Orders';
-// import Drones from './components/Employee/Drones/Drones';
+import Drones from './components/Employee/Drones/Drones';
 
 // Customer view components
 import Menu from './components/Customer/Menu/Menu';
@@ -53,6 +53,10 @@ function App() {
               <Route path="/employee/register" exact>
                 <NavbarEmployee />
                 <Registration />
+              </Route>
+              <Route path="/employee/drones" exact>
+                <NavbarEmployee />
+                <Drones />
               </Route>
           </Switch>
         </BrowserRouter>
