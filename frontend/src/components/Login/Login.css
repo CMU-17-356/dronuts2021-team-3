@@ -1,0 +1,114 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;   
+}
+
+.login {
+    display: grid;
+    grid-template-columns:50% 50%;
+    background-color: navy;
+    height: 100vh;
+}
+
+.login-left {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.login-left h2 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: palevioletred;
+}
+
+.login-logo {
+    width: 50%;
+}
+
+.login-form {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.login-header {
+    margin: 20px;
+}
+
+.login-header h2 {
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.login-username {
+    margin: 15px;
+}
+
+.login-username input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.login-username input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.login-password {
+    margin: 15px;
+}
+
+.login-password input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.login-password input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.login-form p {
+    text-decoration-color: palevioletred;
+    color: palevioletred;
+    text-decoration: underline;
+}
+
+.login-button h3{
+    color: navy;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.login-button:hover{
+    background-color: white;
+}
+
+.button-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.login-button{
+    background-color: palevioletred;
+    padding: 5px 10px 0px 10px;
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: 110px;
+}

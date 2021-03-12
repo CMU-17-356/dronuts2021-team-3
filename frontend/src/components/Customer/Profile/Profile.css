@@ -1,0 +1,240 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;   
+}
+
+.profile {
+    display: grid;
+    grid-template-columns:50% 50%;
+    background-color: navy;
+    height: 100vh;
+}
+
+.profile-left {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+}
+
+.profile-left h2 {
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: palevioletred;
+}
+
+.profile-logo {
+    width: 50%;
+}
+
+.profile-form {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+}
+
+.profile-header {
+    margin: 20px;
+}
+
+.profile-header h2 {
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.profile-username {
+    margin: 15px;
+}
+
+.profile-username input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-username input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-form button{
+    margin-left: 20px;
+    color: navy;
+    font-size: 50%;
+    background-color: palevioletred;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.profile-form button:hover{
+    background-color: white;
+}
+
+.profile-firstname {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.change-password {
+    font-size: 200%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.profile-firstname input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-firstname button{
+    margin-left: 20px;
+    color: navy;
+}
+
+.profile-lastname {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile-username {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile-lastname input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-lastname input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-address {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile-address input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-address input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-contact {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile-contact input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-contact input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-email {
+    margin: 15px;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+.profile-email input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-email input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-password {
+    margin: 15px;
+}
+
+.profile-password input{
+    width: 30%;
+    border-radius: 8px;
+}
+
+.profile-password input::placeholder{
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    text-align: center;
+}
+
+.profile-form p {
+    text-decoration-color: palevioletred;
+    color: palevioletred;
+}
+.profile-button h3{
+    color: navy;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+}
+
+.profile-button:hover{
+    background-color: white;
+}
+
+.profile-container {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.profile-button{
+    background-color: palevioletred;
+    padding: 5px 10px 0px 10px;
+    border-radius: 15px;
+    width: fit-content;
+    margin-left: 110px;
+}
