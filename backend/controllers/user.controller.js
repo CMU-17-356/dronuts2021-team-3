@@ -25,7 +25,8 @@ exports.getCurrentOrder = (req, res) => {
     },
     order: [
       ['createdAt', 'DESC']
-    ]
+    ],
+    include: Product
   })
     .then(order => {
       if (!order) {
@@ -56,6 +57,9 @@ exports.addToOrder = (req, res) => {
         return res.status(404).send({ message: 'Order Not found.' })
       }
 
+      if (!req.body.product_id) {
+        return res.status(404).send({ message: 'Product Not found.' })
+      }
       Product.findOne({
         where: {
           product_id: req.body.product_id
@@ -66,9 +70,22 @@ exports.addToOrder = (req, res) => {
             return res.status(404).send({ message: 'Product Not found.' })
           }
 
-          OrderProduct.create({
-            order_id: order.order_id,
-            product_id: req.body.product_id
+          OrderProduct.findOne({
+            where: {
+              product_id: req.body.product_id,
+              order_id: order.order_id
+            }
+          })
+          .then(orderproduct => {
+            orderproduct.update({
+              quantity: req.body.quantity
+            })
+          })
+          .catch(err => {
+            OrderProduct.create({
+              product_id: req.body.product_id,
+              quantity: req.body.quantity
+            })
           })
 
           res.status(200).send({

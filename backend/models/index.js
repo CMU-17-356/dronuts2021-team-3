@@ -37,7 +37,12 @@ db.user.hasMany(db.order, {
 })
 db.order.belongsTo(db.user)
 
-db.orderproduct = sequelize.define('OrderProduct')
+db.orderproduct = sequelize.define('OrderProduct', {
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 1
+  }
+})
 db.order.belongsToMany(db.product, {
   foreignKey: 'order_id',
   through: 'OrderProduct'
@@ -58,11 +63,14 @@ db.ingredient.belongsToMany(db.product, {
 
 db.orderdrone = sequelize.define('OrderDrone')
 db.order.belongsTo(db.drone, {
-  foreignKey: 'order_id',
+  foreignKey: {
+    name: 'drone_id',
+    allowNull: true
+  },
   through: 'OrderDrone'
 })
 db.drone.belongsToMany(db.order, {
-  foreignKey: 'drone_id',
+  foreignKey: 'order_id',
   through: 'OrderDrone'
 })
 

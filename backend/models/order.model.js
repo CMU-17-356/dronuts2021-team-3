@@ -2,7 +2,6 @@ module.exports = (sequelize, Sequelize) => {
   const Order = sequelize.define('orders', {
     order_id: {
       type: Sequelize.INTEGER,
-      allowNull: false,
       autoIncrement: true,
       primaryKey: true
     },

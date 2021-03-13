@@ -30,13 +30,15 @@ const isEmployee = (req, res, next) => {
       username: req.username
     }
   }).then(user => {
+    if (!user) {
+      return res.status(403).send({
+        message: 'Require Employee Role!'
+      })
+    }
+
     if (user.user_type === 'employee') {
       return next()
     }
-
-    return res.status(403).send({
-      message: 'Require Employee Role!'
-    })
   })
 }
 
@@ -46,13 +48,15 @@ const isCustomer = (req, res, next) => {
       username: req.username
     }
   }).then(user => {
+    if (!user) {
+      return res.status(403).send({
+        message: 'Require Employee Role!'
+      })
+    }
+
     if (user.user_type === 'customer') {
       return next()
     }
-
-    return res.status(403).send({
-      message: 'Require Customer Role!'
-    })
   })
 }
 
