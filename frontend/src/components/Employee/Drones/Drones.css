@@ -1,0 +1,103 @@
+html, body {
+    height: 100vh;
+}
+
+body
+{ 
+    margin: 0;
+    padding: 0;
+    background-color: palevioletred !important;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: color;   
+}
+
+.drones {
+    height: 100%;
+    background-color: palevioletred;
+}
+
+.drones-header {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.drones-header h1 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
+.drone-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-gap: 1.5rem;
+    margin: 20px;
+}
+
+.drone-num {
+    background-color: palevioletred;
+    align-items: center;
+    text-align: center;
+}
+
+.drone-num h3 {
+    color: navy;
+}
+
+.drone-item {
+    border: navy;
+    border-style: solid;
+    background-color: navy;
+}
+
+.drone-list {
+}
+
+.drone-list ul {
+    list-style: circle;
+}
+
+.drone-list ul li {
+    list-style: circle;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 120%;
+    color: palevioletred;
+}
+
+.drone-list ul li::before{
+    content: '';
+}
+
+.drone-done-button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.drone-done-button button {
+    box-shadow: 1px 2px palevioletred;
+    width: 50%;
+    color: navy;
+    font-weight: bold;
+    background-color: palevioletred;
+    border-radius: 10px;
+    box-shadow: 1px 2px navy;
+}
+
+.drone-done-button button:hover {
+    background-color: white;
+}
+
+.drone-list-item {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
