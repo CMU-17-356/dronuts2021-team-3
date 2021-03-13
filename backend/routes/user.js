@@ -61,4 +61,12 @@ router.get(
   }
 )
 
+router.get(
+  '/getuser',
+  authJwt.verifyToken,
+  function (req, res, next) {
+    controller.getUser(req, res, next)
+  }
+)
+
 module.exports = router

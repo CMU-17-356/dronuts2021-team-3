@@ -2,6 +2,7 @@ const db = require('../models')
 const Order = db.order
 const Product = db.product
 const OrderProduct = db.orderproduct
+const User = db.user
 
 exports.createOrder = (req, res) => {
   Order.create({
@@ -158,6 +159,22 @@ exports.getMenu = (req, res) => {
     .then(product => {
       res.status(200).send({
         product: product.toJSON()
+      })
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message })
+    })
+}
+
+exports.getUser = (req, res) => {
+  User.findOne ({
+    where: {
+      username: req.body.username
+    }
+  })
+    .then(user => {
+      res.status(200).send({
+        user: user.toJSON()
       })
     })
     .catch(err => {
