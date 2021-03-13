@@ -1,16 +1,24 @@
 const db = require('../models')
-const Drone = db.drone
+const axios = require('axios')
 const Order = db.order
 
 exports.getAllDrones = (req, res) => {
-  Drone.findAll({
-    order: [
-      ['drone_id', 'ASC']
-    ]
-  })
-    .then(drone => {
+    axios.get('http://drones.17-356.isri.cmu.edu/api/airbases/team3')
+    .then(res => {
+      var requests = [];
+      for (var i = 0; i < res.data.drones.length; i++) {
+        requests.push(axios.get('http://drones.17-356.isri.cmu.edu/api/drones/' + res.data.drones[i]))
+      } 
+
+      return axios.all(requests)
+    })
+    .then(responses => {
+      var drones = [];
+      for (var i = 0; i < responses.length; i++) {
+        drones.push(responses[i].data)
+      }
       res.status(200).send({
-        drone: drone.toJSON()
+        drones: drones
       })
     })
     .catch(err => {
