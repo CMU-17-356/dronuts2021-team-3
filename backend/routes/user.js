@@ -39,7 +39,7 @@ router.post(
 )
 
 router.post(
-  '/addtoorder',
+  '/removefromorder',
   authJwt.verifyToken, authJwt.isCustomer,
   function (req, res, next) {
     controller.removeFromOrder(req, res, next)
