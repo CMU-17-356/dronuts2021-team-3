@@ -234,11 +234,12 @@ exports.getMenu = (req, res) => {
   Product.findAll({
     order: [
       ['product_id', 'ASC']
-    ]
+    ],
+    raw: true,
   })
     .then(product => {
       res.status(200).send({
-        product: product.toJSON()
+        product: product
       })
     })
     .catch(err => {
