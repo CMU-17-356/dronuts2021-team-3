@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import './Menu.css';
 import Donut_1 from './Donut_1.png'
 import Donut_2 from './Donut_2.png'
@@ -21,7 +21,7 @@ const Menu = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/getmenu')
+    fetch('https://40.83.140.149/getmenu')
       .then(res => res.json())
       .then(
         (result) => {
