@@ -39,7 +39,7 @@ const ingredient = Joi.object({
 })
 
 const order = Joi.object({
-  order_id: Joi.number().integer().required(),
+  order_id: Joi.number().integer(),
   payment_status: Joi.string().default('pending').valid('paid', 'pending'),
   date_time_ordered: Joi.date().timestamp('unix'),
   total_cost: Joi.number().min(0).precision(2).default(0),

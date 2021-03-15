@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
 const testRouter = require('./routes/testr')
 const userRouter = require('./routes/user')
+const employeeRouter = require('./routes/employee')
 
 const app = express()
 
@@ -36,6 +37,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
 app.use('/user', userRouter)
+app.use('/employee', employeeRouter)
 app.use('/test', testRouter)
 
 // catch 404 and forward to error handler

@@ -25,6 +25,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "axios": "^0.21.1",
     "concurrently": "^6.0.0",
     "create-react-app": "^4.0.3",
     "depcheck": "^1.4.0",
