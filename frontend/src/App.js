@@ -13,6 +13,8 @@ import Menu from './components/Customer/Menu/Menu';
 // import Cart from './components/Customer/Cart/Cart';
 import Checkout from './components/Customer/Checkout/Checkout';
 import Login from './components/Login/Login';
+import EmployeeLogin from './components/Login/Employee_Login';
+import EmployeeRegistration from './components/Login/Employee_Registration';
 import Registration from './components/Login/Registration';
 import Profile from './components/Customer/Profile/Profile';
 
@@ -48,11 +50,11 @@ function App() {
               </Route>
               <Route path="/employee/login" exact>
                 <NavbarEmployee />
-                <Login />
+                <EmployeeLogin />
               </Route>
               <Route path="/employee/register" exact>
                 <NavbarEmployee />
-                <Registration />
+                <EmployeeRegistration />
               </Route>
               <Route path="/employee/drones" exact>
                 <NavbarEmployee />

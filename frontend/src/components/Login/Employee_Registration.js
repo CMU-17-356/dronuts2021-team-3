@@ -17,7 +17,7 @@ export default class Registration extends Component {
         password: '',
         first_name: '',
         last_name: '',
-        user_type: 'customer', //need to determine the path
+        user_type: 'employee',
         email: '',
         logged_in: false
       };

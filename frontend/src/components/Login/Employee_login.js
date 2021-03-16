@@ -15,7 +15,7 @@ export default class Registration extends Component {
     this.state = {
       username: '',
       password: '',
-      user_type: 'customer',
+      user_type: 'employee',
       logged_in: false
     };
   }
@@ -74,7 +74,7 @@ export default class Registration extends Component {
               <NavLink
                 className="navbar-item"
                 activeClassName="is-active"
-                to="/register"
+                to="/employee/register"
                 exact
             ><p>Haven't made an account? Sign up here</p></NavLink></div>
               <div className="button-container">

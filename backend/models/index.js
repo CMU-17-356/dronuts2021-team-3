@@ -30,7 +30,7 @@ db.user = require('../models/user.model.js')(sequelize, Sequelize)
 db.order = require('../models/order.model.js')(sequelize, Sequelize)
 db.product = require('../models/product.model.js')(sequelize, Sequelize)
 db.ingredient = require('../models/ingredient.model.js')(sequelize, Sequelize)
-db.drone = require('../models/drone.model.js')(sequelize, Sequelize)
+// db.drone = require('../models/drone.model.js')(sequelize, Sequelize)
 
 db.user.hasMany(db.order, {
   foreignKey: 'username'
@@ -61,18 +61,18 @@ db.ingredient.belongsToMany(db.product, {
   through: 'ProductIngredient'
 })
 
-db.orderdrone = sequelize.define('OrderDrone')
-db.order.belongsTo(db.drone, {
-  foreignKey: {
-    name: 'drone_id',
-    allowNull: true
-  },
-  through: 'OrderDrone'
-})
-db.drone.belongsToMany(db.order, {
-  foreignKey: 'order_id',
-  through: 'OrderDrone'
-})
+// db.orderdrone = sequelize.define('OrderDrone')
+// db.order.belongsTo(db.drone, {
+//   foreignKey: {
+//     name: 'drone_id',
+//     allowNull: true
+//   },
+//   through: 'OrderDrone'
+// })
+// db.drone.belongsToMany(db.order, {
+//   foreignKey: 'order_id',
+//   through: 'OrderDrone'
+// })
 
 db.ROLES = ['employee', 'customer']
 
