@@ -4,6 +4,8 @@ import Dronut_Logo from './Dronut_Logo.png'
 import { NavLink } from 'react-router-dom';
 import axios from "axios";
 import Cookies from 'universal-cookie'
+import {Redirect} from 'react-router-dom'
+
 
 // component imports
 const cookies = new Cookies()
@@ -12,7 +14,9 @@ export default class Registration extends Component {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      user_type: 'customer',
+      logged_in: false
     };
   }
   
@@ -31,8 +35,8 @@ export default class Registration extends Component {
         password: this.state.password,
     }).then(response => 
     {
-      console.log(response)
       cookies.set('token',response.data.token,{ path: "/" })
+      this.setState({logged_in: true});
       console.log(response)
     })
     .catch(function(error) {
@@ -41,6 +45,12 @@ export default class Registration extends Component {
   };
 
   render() {
+    if (this.state.logged_in && this.state.user_type === "customer") {
+      return <Redirect to="/" />
+    }
+    else if (this.state.logged_in && this.state.user_type === "employee") {
+      return <Redirect to="/employee/orders" />
+    }
     return (
       <div className="login">
       <div className="login-left">
