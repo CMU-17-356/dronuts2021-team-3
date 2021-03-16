@@ -16,7 +16,8 @@ router.use(
 
 router.get(
   '/getalldrones',
-  authJwt.verifyToken, authJwt.isEmployee,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isEmployee,
   function (req, res, next) {
     controller.getAllDrones(req, res, next)
   }
@@ -24,7 +25,8 @@ router.get(
 
 router.get(
   '/getpendingorders',
-  authJwt.verifyToken, authJwt.isEmployee,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isEmployee,
   function (req, res, next) {
     controller.getPendingOrders(req, res, next)
   }
@@ -32,7 +34,8 @@ router.get(
 
 router.post(
   '/completeorder',
-  authJwt.verifyToken, authJwt.isEmployee,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isEmployee,
   function (req, res, next) {
     controller.completeOrder(req, res, next)
   }
