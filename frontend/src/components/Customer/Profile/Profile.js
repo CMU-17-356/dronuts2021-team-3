@@ -10,22 +10,18 @@ const Registration = () => {
     const [isLoaded, setIsLoaded] = useState(false);
   
     useEffect(() => {
-        fetch('/user/getuser')
-        .then(res => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setUser(result);
-          },
-          // Note: it's important to handle errors here
-          // instead of a catch() block so that we don't swallow
-          // exceptions from actual bugs in components.
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        )
-    }, [])
+        async function fetchMyAPI() {
+          let response = await fetch('http://localhost:9000/user/getuser');
+          response = await response.text();
+          setUser(response); 
+          setIsLoaded(true);
+        }
+    
+        fetchMyAPI()
+      }, [])
+
+    var userJson = JSON.parse(user);
+    console.log(userJson);
 
     if (error) {
         return <div className="menu-header">Error: {error.message}</div>;

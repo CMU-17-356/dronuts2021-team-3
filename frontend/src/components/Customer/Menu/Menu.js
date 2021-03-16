@@ -73,7 +73,7 @@ const Menu = () => {
 
   const items = []
 
-  for(var i = 0; (menuJson != null) && (i < 2); i++) {  
+  for(var i = 0; (menuJson != null) && (i < menuJson.product.length); i++) {  
     items.push(<MenuItem key={i} props={menuJson.product[i]}/>)
       console.log(i);
   }

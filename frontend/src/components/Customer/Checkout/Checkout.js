@@ -11,22 +11,17 @@ const Checkout = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('/user/getcurrentorder')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setOrder(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
+    async function fetchMyAPI() {
+      let response = await fetch('http://localhost:9000/user/getuser');
+      response = await response.text();
+      setOrder(response); 
+      setIsLoaded(true);
+    }
+
+    fetchMyAPI()
   }, [])
+
+  var orderJson = JSON.parse(order);
 
   const TableRow = (props) => {
     return (<tr>
@@ -37,6 +32,13 @@ const Checkout = () => {
     <td className="amount-col">${props.price*props.quantity}</td>
     </tr>);
   };
+
+/*   const items = []
+
+  for(var i = 0; (orderJson != null) && (i < 2); i++) {  
+    items.push(<TableRow key={i} props={orderJson.order[i]}/>)
+      console.log(i);
+  } */
 
   if (error) {
     return <div className="menu-header">Error: {error.message}</div>;
