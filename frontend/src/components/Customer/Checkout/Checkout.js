@@ -11,7 +11,7 @@ const Checkout = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetch('https://40.83.140.149/getcurrentorder')
+    fetch('/user/getcurrentorder')
       .then(res => res.json())
       .then(
         (result) => {

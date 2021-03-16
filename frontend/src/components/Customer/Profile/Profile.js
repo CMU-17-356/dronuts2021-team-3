@@ -10,7 +10,7 @@ const Registration = () => {
     const [isLoaded, setIsLoaded] = useState(false);
   
     useEffect(() => {
-        fetch('https://40.83.140.149/getuser')
+        fetch('/user/getuser')
         .then(res => res.json())
         .then(
           (result) => {

@@ -14,31 +14,51 @@ import Donut_11 from './Donut_11.png'
 import Donut_12 from './Donut_12.png'
 // component imports
 
+const axios = require('axios')
+
 const Menu = () => {
 
   const [menu, setMenu] = useState(null);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    fetch('https://40.83.140.149/getmenu')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setMenu(result);
-        },
+/*   useEffect(() => {
+    axios.get('http://localhost:9000/user/getmenu')
+      .then(res => {
+        console.log(res.data.product);
+        console.log(JSON.stringify(res.data.product));
+        return res;
+      })
+      .then(result => {
+        setMenu(result.data.product);
+        setIsLoaded(true);
+        console.log(menu);
+      })
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
-        (error) => {
+        .catch((error) => {
           setIsLoaded(true);
           setError(error);
-        }
-      )
+        })
+  }, []) */
+
+  useEffect(() => {
+    async function fetchMyAPI() {
+      let response = await fetch('http://localhost:9000/user/getmenu');
+      response = await response.text();
+      setMenu(response); 
+      setIsLoaded(true);
+    }
+
+    fetchMyAPI()
   }, [])
 
+  //console.log(menu);
+  var menuJson = JSON.parse(menu);
+
   const MenuItem = ({props}) => {
+    return (
      <div className="container">
         <div><img className="menu-item" src={Donut_1} alt=""></img></div>
         <div className="overlay">
@@ -47,7 +67,15 @@ const Menu = () => {
           </div>
           <div className="add-to-cart-button"><button>Add to Cart</button></div>
         </div>
-      </div>  
+      </div>
+    );  
+  };
+
+  const items = []
+
+  for(var i = 0; (menuJson != null) && (i < 2); i++) {  
+    items.push(<MenuItem key={i} props={menuJson.product[i]}/>)
+      console.log(i);
   }
 
   if (error) {
@@ -61,9 +89,7 @@ const Menu = () => {
     <div>
     <div className="menu-header"><h4>Go nuts for DRONUTS!</h4></div>
     <div className="menu">
-      {menu.map((value, index) => {
-        return <MenuItem key={index} props={value}/>
-      })}                                       
+      {items}
     </div>
     </div>
   );
