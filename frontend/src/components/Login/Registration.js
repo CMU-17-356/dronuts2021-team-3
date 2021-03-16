@@ -2,42 +2,76 @@ import React, { Component } from 'react';
 import './Registration.css';
 import Dronut_Logo from './Dronut_Logo.png'
 import axios from "axios";
+import Cookies from 'universal-cookie'
+import {Redirect} from 'react-router-dom'
+import { faPray } from '@fortawesome/free-solid-svg-icons';
 
 // component imports
+const cookies = new Cookies()
 
 export default class Registration extends Component {
     constructor() {
       super();
       this.state = {
-        username: "not yet",
-        password: "not yet",
-        first_name: "not yet",
-        last_name: "not yet",
-        user_type: "customer", //need to determine the path
-        email: "not yet"
+        username: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        user_type: 'customer', //need to determine the path
+        email: '',
+        logged_in: false
       };
     }
-  
-    handleButtonClick = () => {
+    
+    handleChangeUsername = event => {
+      this.setState({username: event.target.value});
+    }
+
+    handleChangePassword = event => {
+      this.setState({password: event.target.value});
+    }
+
+    handleChangeFirstName = event => {
+      this.setState({first_name: event.target.value});
+    }
+
+    handleChangeLastName = event => {
+      this.setState({last_name: event.target.value});
+    }
+
+    handleChangeEmail = event => {
+      this.setState({email: event.target.value});
+    }
+
+    handleButtonClick = event => {
+      event.preventDefault();
       axios.post("http://localhost:9000/auth/register", {
-        username: "not yet",
-        password: "not yet",
-        first_name: "not yet",
-        last_name: "not yet",
-        user_type: "customer", //need to determine the path
-        email: "not yet"
-      }
-      ).then(response => {
-        this.setState({
-          username: "hello"
-          // drone1_name: response.drones[0].drone_name,
-          // drone1_battery: response.drones[0].battery.charge
-        });
-      });    
+          username: this.state.username,
+          password: this.state.password,
+          first_name: this.state.first_name,
+          last_name: this.state.last_name,
+          user_type: 'customer', //hardcoded here. will have separate page for employees
+          email: this.state.email
+      }).then(response => 
+      {
+        cookies.set('token',response.data.token,{ path: "/" })
+        console.log(response)
+        this.setState({logged_in: true});
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
     };
   
     render() {
+      if (this.state.logged_in && this.state.user_type === "customer") {
+        return <Redirect to="/" />
+      }
+      else if (this.state.logged_in && this.state.user_type === "employee") {
+        return <Redirect to="/employee/orders" />
+      }
       return (
+      
         <div className="register">
         <div className="register-left">
             <div></div>
@@ -51,18 +85,21 @@ export default class Registration extends Component {
         <div id="register-right" className="register-form">
             <div></div>
             <div>
+              <form onSubmit={this.handleButtonClick}>
                 <div className="register-header"><h2>Create Account</h2></div>
-                <div className="register-firstname"><input type="text" placeholder="Enter First Name"></input></div>
-                <div className="register-lastname"><input type="text" placeholder="Enter Last Name"></input></div>
-                <div className="register-email"><input type="text" placeholder="Enter Email"></input></div>
-                <div className="register-username"><input type="text" placeholder="Choose Username"></input></div>
+                <div className="register-firstname"><input type="text" onChange={this.handleChangeFirstName} placeholder="Enter First Name"></input></div>
+                <div className="register-lastname"><input type="text" onChange={this.handleChangeLastName} placeholder="Enter Last Name"></input></div>
+                <div className="register-email"><input type="text" onChange={this.handleChangeEmail} placeholder="Enter Email"></input></div>
+                <div className="register-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Choose Username"></input></div>
                 <div className="register-password"><input type="password" id="pass" name="password"
-            minlength="8" required placeholder="Choose Password"></input></div>
+            minlength="8" onChange={this.handleChangePassword} required placeholder="Choose Password"></input></div>
                 <div className="register-container">
                     <div></div>
-                    <button className="register-button" onClick={this.handleButtonClick} >Register</button>
+                    <button className="register-button" type="submit" >Register</button>
                     </div>
                     <div></div> 
+                    
+                    </form>
            </div>
            <div></div>
         </div>
