@@ -21,9 +21,10 @@ exports.register = (req, res) => {
         expiresIn: 86400 // 24 hours
       })
 
-      res.cookie('token', token)
-
-      res.send({ message: 'User was registered.' })
+      res.send({ 
+        message: 'User was registered.',
+        token: token
+      })
     })
     .catch(err => {
       res.status(500).send({ message: err.message })
@@ -56,10 +57,10 @@ exports.login = (req, res) => {
         expiresIn: 86400 // 24 hours
       })
 
-      res.cookie('token', token)
       res.status(200).send({
         username: user.username,
-        user_type: user.user_type
+        user_type: user.user_type,
+        token: token
       })
     })
     .catch(err => {
