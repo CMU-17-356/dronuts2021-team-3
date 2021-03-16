@@ -13,11 +13,7 @@ export default class Drones extends Component {
   }
 
   componentDidMount = () => {
-    axios.get("http://localhost:9000/employee/getalldrones", {
-      headers: {
-        Cookies: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxIiwiaWF0IjoxNjE1ODcxNTkzLCJleHAiOjE2MTU5NTc5OTN9.fdM9set71eoLyfU1sA34fvbb-vVEIqPGzztjrQp-UpI"
-      }
-    }
+    axios.get("http://localhost:9000/employee/getalldrones"
     ).then(response => {
       this.setState({
         drone1_name: "hello"
