@@ -11,7 +11,23 @@ const Registration = () => {
   
     useEffect(() => {
         async function fetchMyAPI() {
-          let response = await fetch('http://localhost:9000/user/getuser');
+          let response = await fetch('http://localhost:9000/user/getuser', { 
+      
+            // Adding method type 
+            method: "GET", 
+              
+            // Adding body or contents to send 
+            body: JSON.stringify({ 
+                username: "", 
+                token: "",  
+            }), 
+              
+            // Adding headers to the request 
+            headers: { 
+                "Content-type": "application/json; charset=UTF-8"
+            } 
+        });
+
           response = await response.text();
           setUser(response); 
           setIsLoaded(true);

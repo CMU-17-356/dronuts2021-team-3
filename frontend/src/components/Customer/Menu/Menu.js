@@ -22,27 +22,6 @@ const Menu = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-/*   useEffect(() => {
-    axios.get('http://localhost:9000/user/getmenu')
-      .then(res => {
-        console.log(res.data.product);
-        console.log(JSON.stringify(res.data.product));
-        return res;
-      })
-      .then(result => {
-        setMenu(result.data.product);
-        setIsLoaded(true);
-        console.log(menu);
-      })
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        .catch((error) => {
-          setIsLoaded(true);
-          setError(error);
-        })
-  }, []) */
-
   useEffect(() => {
     async function fetchMyAPI() {
       let response = await fetch('http://localhost:9000/user/getmenu');
