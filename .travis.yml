@@ -20,11 +20,12 @@ script:
   - npm run lint
   - (cd backend && npm test)
   - (cd frontend && npm test)
-  - docker-compose build --force-rm
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose up -d --force-recreate --remove-orphans
+  script: 
+  - docker-compose build --force-rm
+  - docker-compose up -d --force-recreate --remove-orphans
   on:
     branch: main
