@@ -16,7 +16,8 @@ router.use(
 
 router.post(
   '/createorder',
-  authJwt.verifyToken, authJwt.isCustomer, verifyOrder.checkOrder,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer, verifyOrder.checkOrder,
   function (req, res, next) {
     controller.createOrder(req, res, next)
   }
@@ -24,7 +25,8 @@ router.post(
 
 router.get(
   '/getcurrentorder',
-  authJwt.verifyToken, authJwt.isCustomer,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer,
   function (req, res, next) {
     controller.getCurrentOrder(req, res, next)
   }
@@ -32,7 +34,8 @@ router.get(
 
 router.post(
   '/addtoorder',
-  authJwt.verifyToken, authJwt.isCustomer,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer,
   function (req, res, next) {
     controller.addToOrder(req, res, next)
   }
@@ -40,7 +43,8 @@ router.post(
 
 router.post(
   '/removefromorder',
-  authJwt.verifyToken, authJwt.isCustomer,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer,
   function (req, res, next) {
     controller.removeFromOrder(req, res, next)
   }
@@ -48,7 +52,8 @@ router.post(
 
 router.post(
   '/checkout',
-  authJwt.verifyToken, authJwt.isCustomer,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer,
   function (req, res, next) {
     controller.checkout(req, res, next)
   }
@@ -63,7 +68,7 @@ router.get(
 
 router.get(
   '/getuser',
-  authJwt.verifyToken,
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
   function (req, res, next) {
     controller.getUser(req, res, next)
   }
