@@ -1,52 +1,37 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, Component} from 'react';
 import './Profile.css';
 import Dronut_Logo from './Dronut_Logo.png'
+import Cookies from 'universal-cookie'
+import axios from 'axios'
 // component imports
 
-const Registration = () => {
+const cookies = new Cookies()
 
-    const [user, setUser] = useState(null);
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
+export default class Profile extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+          user: []
+        };
+      }
   
-    useEffect(() => {
-        async function fetchMyAPI() {
-          let response = await fetch('http://localhost:9000/user/getuser', { 
-      
-            // Adding method type 
-            method: "GET", 
-              
-            // Adding body or contents to send 
-            body: JSON.stringify({ 
-                username: "", 
-                token: "",  
-            }), 
-              
-            // Adding headers to the request 
-            headers: { 
-                "Content-type": "application/json; charset=UTF-8"
-            } 
-        });
+    componentDidMount = () => {
+        axios.post("http://localhost:9000/user/getuser", {
+            token: cookies.get('token')
+        })
+        .then(response => {
+            this.setState({
+            user: response.data.user
+            });
+            console.log(response);
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+    };
 
-          response = await response.text();
-          setUser(response); 
-          setIsLoaded(true);
-        }
-    
-        fetchMyAPI()
-      }, [])
-
-    var userJson = JSON.parse(user);
-    console.log(userJson);
-
-    if (error) {
-        return <div className="menu-header">Error: {error.message}</div>;
-      } 
-    else if (!isLoaded) {
-    return <div className="menu-header">Loading...</div>;
-    }
-    else
-    {
+    render() {
         return (
             <div className="profile">
                 <div className="profile-left">
@@ -61,20 +46,18 @@ const Registration = () => {
                 <div id="profile-right" className="profile-form">
                     <div></div>
                     <div>
-                        <div className="profile-header"><h2>Your Profile</h2></div>
-                        <div className="profile-firstname">First Name: {user.first_name}<button type="submit" id="fname-edit">Edit</button></div>
-                        <div className="profile-lastname">Last Name: {user.last_name}<button type="submit" id="lname-edit">Edit</button></div>
+                    <div className="profile-header"><h2>Your Profile</h2></div>
+                        <div className="profile-firstname">First Name: {this.state.user.first_name}<button type="submit" id="fname-edit">Edit</button></div>
+                        <div className="profile-lastname">Last Name: {this.state.user.last_name}<button type="submit" id="lname-edit">Edit</button></div>
                         <div className="profile-address">Address: 5000, Forbes Ave, Pittsburgh, PA 15213<button type="submit" id="address-edit">Edit</button></div>
-                        <div className="profile-contact">Contact Number: {user.contact_number}<button type="submit" id="contact-edit">Edit</button></div>
-                        <div className="profile-email">Email: {user.email}<button type="submit" id="email-edit">Edit</button></div>
-                        <div className="profile-username">Username: {user.username}</div>
-                        <div className="change-password"><button type="submit" id="email-edit">Change Password</button></div>
+                        <div className="profile-contact">Contact Number: {this.state.user.contact_number}<button type="submit" id="contact-edit">Edit</button></div>
+                        <div className="profile-email">Email: {this.state.user.email}<button type="submit" id="email-edit">Edit</button></div>
+                        <div className="profile-username">Username: {this.state.user.username}</div>
+                        <div className="change-password"><button type="submit" id="email-edit">Change Password</button></div>                        
                     </div>
                 <div></div>
                 </div>
             </div>
         );
-    }
-};
-
-export default Registration;
+    };
+}

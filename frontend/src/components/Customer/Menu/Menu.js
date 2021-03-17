@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import './Menu.css';
 import Donut_1 from './Donut_1.png'
+import axios from 'axios'
+import Cookies from 'universal-cookie'
 import Donut_2 from './Donut_2.png'
 import Donut_3 from './Donut_3.png'
 import Donut_4 from './Donut_4.png'
@@ -14,65 +16,62 @@ import Donut_11 from './Donut_11.png'
 import Donut_12 from './Donut_12.png'
 // component imports
 
-const axios = require('axios')
+const cookies = new Cookies()
 
-const Menu = () => {
+export default class Menu extends Component {
 
-  const [menu, setMenu] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  constructor() {
+    super();
+    this.state = {
+      menu: []
+    };
+  }
 
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await fetch('http://localhost:9000/user/getmenu');
-      response = await response.text();
-      setMenu(response); 
-      setIsLoaded(true);
-    }
-
-    fetchMyAPI()
-  }, [])
-
-  //console.log(menu);
-  var menuJson = JSON.parse(menu);
-
-  const MenuItem = ({props}) => {
-    return (
-     <div className="container">
-        <div><img className="menu-item" src={Donut_1} alt=""></img></div>
-        <div className="overlay">
-          <div className="text">
-          <div className="item-text">{props.name} <br/> {props.price} </div>
-          </div>
-          <div className="add-to-cart-button"><button>Add to Cart</button></div>
-        </div>
-      </div>
-    );  
+  componentDidMount = () => {
+      axios.get("http://localhost:9000/user/getmenu")
+      .then(response => {
+          this.setState({
+          menu: response.data.product
+          });
+      })
+      .catch(function(error) {
+          console.log(error);
+      })
   };
 
-  const items = []
+  handleButtonClick = (id) => {
+    console.log(id);
+    axios.post("http://localhost:9000/user/addtoorder", {
+      product_id: id,
+      token: cookies.get('token')
+  })
+  .then(response => {
+    console.log(id);
+    console.log(response);
+  })
+  .catch(function(error) {
+    console.log(error);
+  })
+  };
 
-  for(var i = 0; (menuJson != null) && (i < menuJson.product.length); i++) {  
-    items.push(<MenuItem key={i} props={menuJson.product[i]}/>)
-      console.log(i);
-  }
-
-  if (error) {
-    return <div className="menu-header">Error: {error.message}</div>;
-  } 
-  else if (!isLoaded) {
-    return <div className="menu-header">Loading...</div>;
-  }
-  else {
+  render() {
   return (
     <div>
     <div className="menu-header"><h4>Go nuts for DRONUTS!</h4></div>
     <div className="menu">
-      {items}
+      {this.state.menu.map((product, index) => (
+      <div key={index} className="container">
+        <div key={index} ><img key={index} className="menu-item" src={Donut_1} alt=""></img></div>
+        <div key={index} className="overlay">
+          <div key={index} className="text">
+          <div key={index} className="item-text">{product.name} <br/> ${product.price} </div>
+          </div>
+          <div key={index} className="add-to-cart-button"><button type="button" id="add-to-cart" onClick={this.handleButtonClick(product.product_id)} type="submit">Add to Cart</button></div>
+        </div>
+      </div>
+      ))}
     </div>
     </div>
-  );
-  }
-};
-
-export default Menu;
+  )
+  };
+}

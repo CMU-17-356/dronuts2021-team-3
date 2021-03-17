@@ -23,7 +23,7 @@ router.post(
   }
 )
 
-router.get(
+router.post(
   '/getcurrentorder',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isCustomer,
@@ -66,7 +66,7 @@ router.get(
   }
 )
 
-router.get(
+router.post(
   '/getuser',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   function (req, res, next) {

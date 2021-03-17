@@ -1,53 +1,58 @@
-import React, { useState, useEffect} from 'react';
+import React, {Component} from 'react';
 import './Checkout.css';
 import Donut_1 from '../Menu/Donut_1.png'
+import axios from "axios";
+import Cookies from 'universal-cookie'
+import {Redirect} from 'react-router-dom'
 
 // component imports
+const cookies = new Cookies()
 
-const Checkout = () => {
+export default class Checkout extends Component {
 
-  const [order, setOrder] = useState(null);
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  constructor() {
+    super();
+    this.state = {
+      order: [],
+      transaction_complete: false
+    };
+  }
 
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let response = await fetch('http://localhost:9000/user/getuser');
-      response = await response.text();
-      setOrder(response); 
-      setIsLoaded(true);
-    }
-
-    fetchMyAPI()
-  }, [])
-
-  var orderJson = JSON.parse(order);
-
-  const TableRow = (props) => {
-    return (<tr>
-    <td className="item-col">{props.name}</td>
-    <td><img className="image-item" src={Donut_1} alt=""></img></td>
-    <td className="quantity-col">{props.quantity}</td>
-    <td className="price-col">${props.price}</td>
-    <td className="amount-col">${props.price*props.quantity}</td>
-    </tr>);
+  componentDidMount = () => {
+      axios.post("http://localhost:9000/user/getcurrentorder", {
+          token: cookies.get('token')
+      })
+      .then(response => {
+          this.setState({
+          order: response.data.order
+          });
+          console.log(response);
+      })
+      .catch(function(error) {
+          console.log(error);
+      })
   };
 
-/*   const items = []
+/*   handleButtonClick = event => {
+      event.preventDefault();
+      axios.post("http://localhost:9000/user/checkout", {
+        token: cookies.get('token')
+    }).then(response => 
+    {
+      this.setState({order: response});
+      this.setState({transaction_complete: true});
+      this.render()
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }; */
 
-  for(var i = 0; (orderJson != null) && (i < 2); i++) {  
-    items.push(<TableRow key={i} props={orderJson.order[i]}/>)
-      console.log(i);
-  } */
-
-  if (error) {
-    return <div className="menu-header">Error: {error.message}</div>;
-  } 
-  else if (!isLoaded) {
-  return <div className="menu-header">Loading...</div>;
-  }
-  else
-  {
+  render() {
+    if(this.state.transaction_complete) {
+      return <Redirect to="/" />
+    }
+    else {
     return (
       <div>
       <div className="checkout-header"><h1>Checkout</h1></div>
@@ -60,22 +65,19 @@ const Checkout = () => {
             <th className="quantity-col">QUANTITY</th>
             <th className="price-col">PRICE</th>
             <th className="price-col">AMOUNT</th>
-          </tr>
-          {order.map((value, index) => {
-          return <TableRow key={index} props={value}/>
-          })}        
+          </tr>   
         </thead>
+
       </table>
       </div>
       <div className="total-amount">
-        <h2>Total Amount: {order.total_cost}</h2>
+        <h2>Total Amount: {this.state.order.total_cost}</h2>
       </div>
       <div className="place-order-button">
-          <a href=""><h2>Place Order</h2></a>
+          
       </div>
       </div>
-    );
-  }
+    )
+    }
+  };
 };
-
-export default Checkout;
