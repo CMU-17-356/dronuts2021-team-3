@@ -55,91 +55,44 @@ exports.addToOrder = (req, res) => {
   })
     .then(order => {
       if (!order) {
-        Order.create({
-          username: req.body.username
-        })
-        .then(order => {
-          if (!req.body.product_id) {
+        return res.status(404).send({ message: 'Order Not found.' })
+      }
+
+      if (!req.body.product_id) {
+        return res.status(404).send({ message: 'Product Not found.' })
+      }
+      Product.findOne({
+        where: {
+          product_id: req.body.product_id
+        }
+      })
+        .then(product => {
+          if (!product) {
             return res.status(404).send({ message: 'Product Not found.' })
           }
 
-          Product.findOne({
+          OrderProduct.findOne({
             where: {
-              product_id: req.body.product_id
+              product_id: req.body.product_id,
+              order_id: order.order_id
             }
           })
-          .then(product => {
-            if (!product) {
-              return res.status(404).send({ message: 'Product Not found.' })
-            }
-
-            OrderProduct.findOne({
-              where: {
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id
-              }
-            })
-            .then(orderproduct => {
-              orderproduct.update({
-                quantity: req.body.quantity
-              })
-            })
-            .catch(err => {
-              OrderProduct.create({
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id,
-                quantity: req.body.quantity
-              })
-            })
-
-            res.status(200).send({
-              order: order.toJSON()
+          .then(orderproduct => {
+            orderproduct.update({
+              quantity: req.body.quantity
             })
           })
-        })
-        .catch(err => {
-          res.status(500).send({ message: err.message })
-        })
-      }
-      else {
-        if (!req.body.product_id) {
-          return res.status(404).send({ message: 'Product Not found.' })
-        }
-
-        Product.findOne({
-          where: {
-            product_id: req.body.product_id
-          }
-        })
-          .then(product => {
-            if (!product) {
-              return res.status(404).send({ message: 'Product Not found.' })
-            }
-
-            OrderProduct.findOne({
-              where: {
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id
-              }
-            })
-            .then(orderproduct => {
-              orderproduct.update({
-                quantity: req.body.quantity
-              })
-            })
-            .catch(err => {
-              OrderProduct.create({
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id,
-                quantity: req.body.quantity
-              })
-            })
-
-            res.status(200).send({
-              order: order.toJSON()
+          .catch(err => {
+            OrderProduct.create({
+              product_id: req.body.product_id,
+              quantity: req.body.quantity
             })
           })
-        }
+
+          res.status(200).send({
+            order: order.toJSON()
+          })
+        })
     })
     .catch(err => {
       res.status(500).send({ message: err.message })
@@ -163,7 +116,7 @@ exports.removeFromOrder = (req, res) => {
 
       OrderProduct.findOne({
         where: {
-          order_id: order.dataValues.order_id,
+          order_id: req.body.order_id,
           product_id: req.body.product_id
         }
       })

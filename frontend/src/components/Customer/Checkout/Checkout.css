@@ -35,6 +35,14 @@ body
     font-style: italic;
 }
 
+.checkout-header h2 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
 table {
     border: 1px solid palevioletred;
     margin: 0 auto; 
@@ -83,9 +91,9 @@ td, th {
     justify-content: center;
     text-align: center;
     align-items: center;
-    background-color: navy;
+    background-color: palevioletred;
     width: fit-content;
-    margin-left: 44vw;
+    margin-left: 34vw;
     margin-bottom: 20px;
     padding-left: 10px;
     padding-right: 10px;
@@ -98,7 +106,21 @@ td, th {
     font-variant: small-caps;
 }
 
-.place-order-button:hover{
+.place-order-button button{
+    background-color: navy;
+    color: palevioletred;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.place-order-button input{
+    height: 35px;
+    margin: 10px;
+}
+
+.place-order-button button:hover{
     background-color: white;
 }
 

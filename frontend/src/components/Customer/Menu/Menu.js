@@ -39,7 +39,8 @@ export default class Menu extends Component {
       })
   };
 
-  handleButtonClick = (id) => {
+  handleButtonClick = (id) => (event) => {
+    event.preventDefault();
     console.log(id);
     axios.post("http://localhost:9000/user/addtoorder", {
       product_id: id,

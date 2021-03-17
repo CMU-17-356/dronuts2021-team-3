@@ -22,7 +22,7 @@ body
 .register-left {
     text-align: center;
     display: grid;
-    grid-template-rows: 33% 33% 33%;
+    grid-template-rows: 20% 40% 40%;
 }
 
 .register-left h2 {
@@ -38,7 +38,7 @@ body
 .register-form {
     text-align: center;
     display: grid;
-    grid-template-rows: 20% 60% 20%;
+    grid-template-rows: 20% 40% 40%;
 }
 
 .register-header {
@@ -182,7 +182,12 @@ body
 .register-button{
     background-color: palevioletred;
     padding: 5px 10px 0px 10px;
-    border-radius: 15px;
+    border-radius: 10px;
     width: fit-content;
-    margin-left: 110px;
+    margin-left: 102px;
+    color: navy;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 150%;   
 }
