@@ -58,6 +58,14 @@ export default class Checkout extends Component {
     })
   };
 
+  calculateTotal = () => {
+    var total = 0
+    this.state.order.products.forEach(product => {
+      total += product.price * product.OrderProduct.quantity
+    })
+    return total
+  }
+
   render() {
     if(this.state.transaction_complete) {
       return this.state.redirect
@@ -100,7 +108,7 @@ export default class Checkout extends Component {
       </table>
       </div>
       <div className="total-amount">
-        <h2>Total Amount: ${this.state.order.total_cost}</h2>
+        <h2>Total Amount: ${this.calculateTotal}</h2>
       </div>
       <div className="place-order-button">
       <input type="text" onChange={this.handleChangeCreditCard} placeholder="Enter Credit Card Details"></input>
