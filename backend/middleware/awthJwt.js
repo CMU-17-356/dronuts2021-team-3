@@ -19,7 +19,6 @@ const verifyToken = (req, res, next) => {
       })
     } else {
       req.body.username = decoded.username
-      console.log("in verifytoken\n");
       return next()
     }
   })
@@ -31,9 +30,7 @@ const isEmployee = (req, res, next) => {
       username: req.body.username
     }
   }).then(user => {
-    console.log("in isemployee\n");
     if (!user || user.user_type !== 'employee') {
-      console.log("in isemployee - failed\n");
       return res.status(403).send({
         message: 'Require Employee Role!'
       })
@@ -49,15 +46,13 @@ const isCustomer = (req, res, next) => {
       username: req.body.username
     }
   }).then(user => {
-    if (!user) {
+    if (!user || user.user_type !== 'customer') {
       return res.status(403).send({
-        message: 'Require Employee Role!'
+        message: 'Require Customer Role!'
       })
     }
 
-    if (user.user_type === 'customer') {
-      return next()
-    }
+    return next()
   })
 }
 

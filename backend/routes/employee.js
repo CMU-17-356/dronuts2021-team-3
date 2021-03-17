@@ -19,12 +19,11 @@ router.post(
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isEmployee,
   function (req, res, next) {
-    console.log("in getalldrones\n");
     controller.getAllDrones(req, res, next)
   }
 )
 
-router.get(
+router.post(
   '/getpendingorders',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isEmployee,

@@ -1,9 +1,9 @@
 const db = require('../models')
 const axios = require('axios')
 const Order = db.order
+const Product = db.product
 
 exports.getAllDrones = (req, res) => {
-  console.log("in getalldrones");
   axios.get('http://drones.17-356.isri.cmu.edu/api/airbases/team3')
     .then(res => {
       const requests = []
@@ -29,20 +29,19 @@ exports.getAllDrones = (req, res) => {
 
 exports.getPendingOrders = (req, res) => {
   Order.findAll({
-    where: {
-      payment_status: 'paid',
-      delivery_status: 'preparing'
-    },
     order: [
       ['order_id', 'ASC']
-    ]
+    ],
+    include: Product
   })
     .then(order => {
+      console.log("found orders")
       res.status(200).send({
-        order: order.toJSON()
+        order: order
       })
     })
     .catch(err => {
+      console.log("err:" + err)
       res.status(500).send({ message: err.message })
     })
 }
