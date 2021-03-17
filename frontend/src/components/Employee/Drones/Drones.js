@@ -11,16 +11,16 @@ export default class Drones extends Component {
       drone1_battery: "not yet"
     };
   }
-
   componentDidMount = () => {
-    axios.get("http://localhost:9000/employee/getalldrones"
+    axios.get("http://localhost:9000/employee/getalldrones", {withCredentials: true}
     ).then(response => {
+      console.log(response)
       this.setState({
-        drone1_name: "hello"
-        // drone1_name: response.drones[0].drone_name,
-        // drone1_battery: response.drones[0].battery.charge
+        drone1_name: response.data.drones[0].drone_name,
+        drone1_battery: response.data.drones[0].battery.charge
       });
-    });    
+    }
+    );
   };
 
   render() {
