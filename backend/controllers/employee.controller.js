@@ -3,6 +3,7 @@ const axios = require('axios')
 const Order = db.order
 
 exports.getAllDrones = (req, res) => {
+  console.log("in getalldrones");
   axios.get('http://drones.17-356.isri.cmu.edu/api/airbases/team3')
     .then(res => {
       const requests = []

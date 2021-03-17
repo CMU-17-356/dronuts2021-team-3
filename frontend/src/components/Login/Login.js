@@ -37,7 +37,6 @@ export default class Registration extends Component {
     {
       cookies.set('token',response.data.token,{ path: "/" })
       this.setState({logged_in: true});
-      console.log(response)
     })
     .catch(function(error) {
       console.log(error);

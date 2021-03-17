@@ -1,164 +1,62 @@
 import React, { Component } from 'react';
 import './Drones.css';
+import Cookies from 'universal-cookie'
 import axios from "axios";
+
 // component imports
+const cookies = new Cookies()
 
 export default class Drones extends Component {
   constructor() {
     super();
     this.state = {
-      drone1_name: "not yet",
-      drone1_battery: "not yet"
+      drones: []
     };
   }
   componentDidMount = () => {
-    axios.get("http://localhost:9000/employee/getalldrones", {withCredentials: true}
-    ).then(response => {
+    axios.post("http://localhost:9000/employee/getalldrones", {
+      token: cookies.get('token')
+    })
+    .then(response => {
       console.log(response)
       this.setState({
-        drone1_name: response.data.drones[0].drone_name,
-        drone1_battery: response.data.drones[0].battery.charge
+        drones: response.data.drones
       });
-    }
-    );
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
   };
 
   render() {
     return (
       <div className="drones">
-      <div className="drones-header"><h1 >Drones</h1></div>
-      <div className="drone-grid">
+        <div className="drones-header"><h1 >Drones</h1></div>
+        <div className="drone-grid">
 
-        <div>
-        <div className="drone-item">
-          <div className="drone-num"><h3> {this.state.drone1_name}</h3></div>
-          <div className="drone-list">
-            <ul>
-              <div className="drone-list-item">
-                <div><li className="battery-level">Battery Level: 54%</li></div>
-              </div>
-              <div className="drone-list-item">
-                <div><li className="allocation">Allocated to: Order #3476541</li></div>
-              </div>
-              <div className="drone-list-item">
-                <div><li className="status">Status: Active</li></div>
-              </div>
-            </ul>
-          </div>
-          </div>
-        </div>
+          {this.state.drones.map((drone, index) => (
+            <div className="drone-item">
+              <div className="drone-num"><h3>Drone #{drone.id}</h3></div>
 
-        <div>
-        <div className="drone-item">
-          <div className="drone-num"><h3>Drone #21</h3></div>
-          <div className="drone-list">
-            <ul>
-              <div className="drone-list-item">
-                <div><li className="battery-level">Battery Level: 54%</li></div>
+              <div className="drone-list">
+                <ul>
+                  <div className="drone-list-item">
+                    <div><li className="drone-name">Name: {drone.drone_name}</li></div>
+                  </div>
+                  <div className="drone-list-item">
+                    <div><li className="battery-level">Battery Level: {(100 * drone.battery.charge) / drone.battery.capacity}</li></div>
+                  </div>
+                  <div className="drone-list-item">
+                    <div><li className="location">Location: {drone.location.lat}, {drone.location.lng}</li></div>
+                  </div>
+                  <div className="drone-list-item">
+                    <div><li className="status">Status: {drone.current_delivery ? drone.current_delivery.status : "Available"}</li></div>
+                  </div>
+                </ul>
               </div>
-              <div className="drone-list-item">
-                <div><li className="allocation">Allocated to: Order #3476541</li></div>
-              </div>
-              <div className="drone-list-item">
-                <div><li className="status">Status: Active</li></div>
-              </div>
-            </ul>
-          </div>
-          </div>
-        </div>
-
-        <div>
-        <div className="drone-item">
-          <div className="drone-num"><h3>Drone #21</h3></div>
-          <div className="drone-list">
-            <ul>
-              <div className="drone-list-item">
-                <div><li className="battery-level">Battery Level: 54%</li></div>
-              </div>
-              <div className="drone-list-item">
-                <div><li className="allocation">Allocated to: Order #3476541</li></div>
-              </div>
-              <div className="drone-list-item">
-                <div><li className="status">Status: Active</li></div>
-              </div>
-            </ul>
-          </div>
-          </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-
-
-    );
-  }
-
+  )};
 }
-
-// const Drones = () => {
-//   return (
-//     <div className="drones">
-//       <div className="drones-header"><h1 >Drones</h1></div>
-//       <div className="drone-grid">
-
-//         <div>
-//         <div className="drone-item">
-//           <div className="drone-num"><h3>Drone #21</h3></div>
-//           <div className="drone-list">
-//             <ul>
-//               <div className="drone-list-item">
-//                 <div><li className="battery-level">Battery Level: 54%</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="allocation">Allocated to: Order #3476541</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="status">Status: Active</li></div>
-//               </div>
-//             </ul>
-//           </div>
-//           </div>
-//         </div>
-
-//         <div>
-//         <div className="drone-item">
-//           <div className="drone-num"><h3>Drone #21</h3></div>
-//           <div className="drone-list">
-//             <ul>
-//               <div className="drone-list-item">
-//                 <div><li className="battery-level">Battery Level: 54%</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="allocation">Allocated to: Order #3476541</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="status">Status: Active</li></div>
-//               </div>
-//             </ul>
-//           </div>
-//           </div>
-//         </div>
-
-//         <div>
-//         <div className="drone-item">
-//           <div className="drone-num"><h3>Drone #21</h3></div>
-//           <div className="drone-list">
-//             <ul>
-//               <div className="drone-list-item">
-//                 <div><li className="battery-level">Battery Level: 54%</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="allocation">Allocated to: Order #3476541</li></div>
-//               </div>
-//               <div className="drone-list-item">
-//                 <div><li className="status">Status: Active</li></div>
-//               </div>
-//             </ul>
-//           </div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Drones;

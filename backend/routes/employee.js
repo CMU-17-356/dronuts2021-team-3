@@ -14,11 +14,12 @@ router.use(
   }
 )
 
-router.get(
+router.post(
   '/getalldrones',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isEmployee,
   function (req, res, next) {
+    console.log("in getalldrones\n");
     controller.getAllDrones(req, res, next)
   }
 )
