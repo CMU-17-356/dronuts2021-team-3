@@ -26,6 +26,31 @@ exports.getCurrentOrder = (req, res) => {
     },
     order: [
       ['createdAt', 'DESC']
+    ],
+    include: Product
+  })
+    .then(order => {
+      if (!order) {
+        return res.status(404).send({ message: 'Order Not found.' })
+      }
+
+      res.status(200).send({
+        order: order.toJSON()
+      })
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message })
+    })
+}
+
+exports.addToOrder = (req, res) => {
+  Order.findOne({
+    where: {
+      username: req.body.username,
+      delivery_status: 'not paid'
+    },
+    order: [
+      ['createdAt', 'DESC']
     ]
   })
     .then(order => {
@@ -115,62 +140,6 @@ exports.getCurrentOrder = (req, res) => {
             })
           })
         }
-    })
-    .catch(err => {
-      res.status(500).send({ message: err.message })
-    })
-}
-
-exports.addToOrder = (req, res) => {
-  Order.findOne({
-    where: {
-      username: req.body.username,
-      delivery_status: 'not paid'
-    },
-    order: [
-      ['createdAt', 'DESC']
-    ]
-  })
-    .then(order => {
-      if (!order) {
-        return res.status(404).send({ message: 'Order Not found.' })
-      }
-
-      if (!req.body.product_id) {
-        return res.status(404).send({ message: 'Product Not found.' })
-      }
-      Product.findOne({
-        where: {
-          product_id: req.body.product_id
-        }
-      })
-        .then(product => {
-          if (!product) {
-            return res.status(404).send({ message: 'Product Not found.' })
-          }
-
-          OrderProduct.findOne({
-            where: {
-              product_id: req.body.product_id,
-              order_id: order.order_id
-            }
-          })
-          .then(orderproduct => {
-            orderproduct.update({
-              quantity: req.body.quantity
-            })
-          })
-          .catch(err => {
-            OrderProduct.create({
-              product_id: req.body.product_id,
-              quantity: req.body.quantity
-            })
-          })
-
-          res.status(200).send({
-            order: order.toJSON()
-          })
-        })
     })
     .catch(err => {
       res.status(500).send({ message: err.message })
