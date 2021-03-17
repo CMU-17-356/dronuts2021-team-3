@@ -14,7 +14,7 @@ router.use(
   }
 )
 
-router.get(
+router.post(
   '/getalldrones',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isEmployee,
@@ -23,7 +23,7 @@ router.get(
   }
 )
 
-router.get(
+router.post(
   '/getpendingorders',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isEmployee,

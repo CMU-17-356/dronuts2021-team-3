@@ -18,7 +18,14 @@ const NavbarEmployee = () => {
                   to="/employee/orders"
                   exact
               ><h3>Orders</h3></NavLink></div>
-            <div className="nav-emp-items"><a href="/#"><h3>Drones</h3></a></div>
+            <div className="nav-emp-items">
+            <NavLink
+                  className="navbar-item"
+                  activeClassName="is-active"
+                  to="/employee/drones"
+                  exact
+              >
+              <h3>Drones</h3></NavLink></div>
             <div className="nav-emp-items">
             <NavLink
                   className="navbar-item"

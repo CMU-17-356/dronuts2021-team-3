@@ -50,12 +50,11 @@ export default class Registration extends Component {
           password: this.state.password,
           first_name: this.state.first_name,
           last_name: this.state.last_name,
-          user_type: 'customer', //hardcoded here. will have separate page for employees
+          user_type: 'employee', //hardcoded here. will have separate page for employees
           email: this.state.email
       }).then(response => 
       {
         cookies.set('token',response.data.token,{ path: "/" })
-        console.log(response)
         this.setState({logged_in: true});
       })
       .catch(function(error) {
