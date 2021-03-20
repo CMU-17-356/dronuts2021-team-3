@@ -9,7 +9,7 @@ services:
 env:
   global:
     - DOCKER_TLS_VERIFY="1"
-    - DOCKER_HOST="tcp://40.83.140.149:2376"
+    - DOCKER_HOST="tcp://13.93.209.83:2376"
     - DOCKER_CERT_PATH="./azure"
     - DOCKER_MACHINE_NAME="dronuts2021-team-3"
     - YARN_GPG=no
@@ -20,11 +20,12 @@ script:
   - npm run lint
   - (cd backend && npm test)
   - (cd frontend && npm test)
-  - docker-compose build --force-rm
 
 deploy:
   skip_cleanup: true
   provider: script
-  script: docker-compose up -d --force-recreate --remove-orphans
+  script: 
+  - docker-compose build --force-rm
+  - docker-compose up -d --force-recreate --remove-orphans
   on:
     branch: main
