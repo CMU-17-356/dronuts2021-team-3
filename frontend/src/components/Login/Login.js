@@ -16,7 +16,9 @@ export default class Registration extends Component {
       username: '',
       password: '',
       user_type: 'customer',
-      logged_in: false
+      logged_in: false,
+      timed_out: [],
+      redirect: false
     };
   }
   
@@ -37,6 +39,8 @@ export default class Registration extends Component {
     {
       cookies.set('token',response.data.token,{ path: "/" })
       this.setState({logged_in: true});
+      this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
+      this.render()
     })
     .catch(function(error) {
       console.log(error);
@@ -45,10 +49,18 @@ export default class Registration extends Component {
 
   render() {
     if (this.state.logged_in && this.state.user_type === "customer") {
-      return <Redirect to="/" />
+      return this.state.redirect
+        ? <Redirect to="/" />
+        : <div>
+        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
+        </div> 
     }
     else if (this.state.logged_in && this.state.user_type === "employee") {
-      return <Redirect to="/employee/orders" />
+      return this.state.redirect
+        ? <Redirect to="/employee/orders" />
+        : <div>
+        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
+        </div> 
     }
     return (
       <div className="login">

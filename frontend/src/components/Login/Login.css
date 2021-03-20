@@ -75,6 +75,31 @@ body
     border-radius: 8px;
 }
 
+.login-head {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+
+.login-head h1 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
+.login-head h2 {
+    font-size: 300%;
+    font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-variant: small-caps;
+    color: navy;
+    font-style: italic;
+}
+
 .login-password input::placeholder{
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
     font-variant: small-caps;

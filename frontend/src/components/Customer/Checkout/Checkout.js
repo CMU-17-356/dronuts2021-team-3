@@ -108,7 +108,7 @@ export default class Checkout extends Component {
       </table>
       </div>
       <div className="total-amount">
-        <h2>Total Amount: ${this.calculateTotal}</h2>
+        <h2>Total Amount: ${this.calculateTotal()}</h2>
       </div>
       <div className="place-order-button">
       <input type="text" onChange={this.handleChangeCreditCard} placeholder="Enter Credit Card Details"></input>
