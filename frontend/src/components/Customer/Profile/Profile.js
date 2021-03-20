@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component} from 'react';
+import React, { Component} from 'react';
 import './Profile.css';
 import Dronut_Logo from './Dronut_Logo.png'
 import Cookies from 'universal-cookie'

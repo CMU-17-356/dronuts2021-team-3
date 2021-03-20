@@ -4,7 +4,6 @@ import Dronut_Logo from './Dronut_Logo.png'
 import axios from "axios";
 import Cookies from 'universal-cookie'
 import {Redirect} from 'react-router-dom'
-import { faPray } from '@fortawesome/free-solid-svg-icons';
 
 // component imports
 const cookies = new Cookies()

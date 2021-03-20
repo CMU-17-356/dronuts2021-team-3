@@ -41,7 +41,7 @@ export default class Checkout extends Component {
 
   handleButtonClick = event => {
       event.preventDefault();
-      if(this.state.credit_card == -1)
+      if(this.state.credit_card === -1)
         return
       axios.post("http://localhost:9000/user/checkout", {
         token: cookies.get('token'),

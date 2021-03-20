@@ -7,11 +7,8 @@ import axios from "axios";
 const cookies = new Cookies()
 
 export default class Drones extends Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = {
-      drones: []
-    };
   }
   componentDidMount = () => {
     axios.post("http://localhost:9000/employee/getalldrones", {

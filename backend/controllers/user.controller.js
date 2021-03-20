@@ -58,50 +58,51 @@ exports.addToOrder = (req, res) => {
         Order.create({
           username: req.body.username
         })
-        .then(order => {
-          if (!req.body.product_id) {
-            return res.status(404).send({ message: 'Product Not found.' })
-          }
-
-          Product.findOne({
-            where: {
-              product_id: req.body.product_id
-            }
-          })
-          .then(product => {
-            if (!product) {
+          .then(order => {
+            if (!req.body.product_id) {
               return res.status(404).send({ message: 'Product Not found.' })
             }
 
-            OrderProduct.findOne({
+            Product.findOne({
               where: {
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id
+                product_id: req.body.product_id
               }
             })
-            .then(orderproduct => {
-              orderproduct.update({
-                quantity: req.body.quantity
-              })
-            })
-            .catch(err => {
-              OrderProduct.create({
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id,
-                quantity: req.body.quantity
-              })
-            })
+              .then(product => {
+                if (!product) {
+                  return res.status(404).send({ message: 'Product Not found.' })
+                }
 
-            res.status(200).send({
-              order: order.toJSON()
-            })
+                OrderProduct.findOne({
+                  where: {
+                    product_id: req.body.product_id,
+                    order_id: order.dataValues.order_id
+                  }
+                })
+                  .then(orderproduct => {
+                    orderproduct.update({
+                      quantity: req.body.quantity
+                    })
+                  })
+                  .catch(err => {
+                    if (err) {
+                      OrderProduct.create({
+                        product_id: req.body.product_id,
+                        order_id: order.dataValues.order_id,
+                        quantity: req.body.quantity
+                      })
+                    }
+                  })
+
+                res.status(200).send({
+                  order: order.toJSON()
+                })
+              })
           })
-        })
-        .catch(err => {
-          res.status(500).send({ message: err.message })
-        })
-      }
-      else {
+          .catch(err => {
+            res.status(500).send({ message: err.message })
+          })
+      } else {
         if (!req.body.product_id) {
           return res.status(404).send({ message: 'Product Not found.' })
         }
@@ -122,24 +123,26 @@ exports.addToOrder = (req, res) => {
                 order_id: order.dataValues.order_id
               }
             })
-            .then(orderproduct => {
-              orderproduct.update({
-                quantity: req.body.quantity
+              .then(orderproduct => {
+                orderproduct.update({
+                  quantity: req.body.quantity
+                })
               })
-            })
-            .catch(err => {
-              OrderProduct.create({
-                product_id: req.body.product_id,
-                order_id: order.dataValues.order_id,
-                quantity: req.body.quantity
+              .catch(err => {
+                if (err) {
+                  OrderProduct.create({
+                    product_id: req.body.product_id,
+                    order_id: order.dataValues.order_id,
+                    quantity: req.body.quantity
+                  })
+                }
               })
-            })
 
             res.status(200).send({
               order: order.toJSON()
             })
           })
-        }
+      }
     })
     .catch(err => {
       res.status(500).send({ message: err.message })
@@ -282,7 +285,7 @@ exports.getMenu = (req, res) => {
     order: [
       ['product_id', 'ASC']
     ],
-    raw: true,
+    raw: true
   })
     .then(product => {
       res.status(200).send({
@@ -295,7 +298,7 @@ exports.getMenu = (req, res) => {
 }
 
 exports.getUser = (req, res) => {
-  User.findOne ({
+  User.findOne({
     where: {
       username: req.body.username
     }
