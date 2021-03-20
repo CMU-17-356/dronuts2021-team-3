@@ -15,10 +15,8 @@ export default class Registration extends Component {
     this.state = {
       username: '',
       password: '',
-      user_type: 'customer',
-      logged_in: false,
-      timed_out: [],
-      redirect: false
+      user_type: 'employee',
+      logged_in: false
     };
   }
   
@@ -39,28 +37,17 @@ export default class Registration extends Component {
     {
       cookies.set('token',response.data.token,{ path: "/" })
       this.setState({logged_in: true});
-      this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
-      this.render()
     })
     .catch(function(error) {
-      console.log(error);
     })
   };
 
   render() {
     if (this.state.logged_in && this.state.user_type === "customer") {
-      return this.state.redirect
-        ? <Redirect to="/" />
-        : <div>
-        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
-        </div> 
+      return <Redirect to="/" />
     }
     else if (this.state.logged_in && this.state.user_type === "employee") {
-      return this.state.redirect
-        ? <Redirect to="/employee/orders" />
-        : <div>
-        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
-        </div> 
+      return <Redirect to="/employee/orders" />
     }
     return (
       <div className="login">
@@ -85,7 +72,7 @@ export default class Registration extends Component {
               <NavLink
                 className="navbar-item"
                 activeClassName="is-active"
-                to="/register"
+                to="/employee/register"
                 exact
             ><p>Haven't made an account? Sign up here</p></NavLink></div>
               <div className="button-container">

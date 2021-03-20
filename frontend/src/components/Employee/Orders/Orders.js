@@ -1,102 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Orders.css';
-// component imports
+import Cookies from 'universal-cookie'
+import axios from "axios";
 
-const Orders = () => {
-  return (
+// component imports
+const cookies = new Cookies()
+
+export default class Orders extends Component {
+  constructor() {
+    super();
+    this.state = {
+      orders: []
+    };
+  }
+
+  componentDidMount = () => {
+    axios.post("http://localhost:9000/employee/getpendingorders", {
+      token: cookies.get('token')
+    })
+    .then(response => {
+      this.setState({
+        orders: response.data.order
+      });
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  };
+
+  render() {
+    return (
+
     <div className="orders">
       <div className="orders-header"><h1 >Orders</h1></div>
       <div className="order-grid">
 
-        <div>
+        {this.state.orders.map((order, index) => (
         <div className="order-item">
-          <div className="order-num"><h3>Order #347189</h3></div>
+          <div className="order-num"><h3>Order {order.order_id}</h3></div>
           <div className="order-list">
             <ul>
+              {order.products.map((product, index) =>
               <div className="list-item">
-                <div><li> Vanilla Icing with Buttercream and Cookies Donut <br/> Quantity: 4 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
+                <div><li>{product.name}<br/> Quantity: {product.OrderProduct.quantity}</li></div>
               </div>
-              <div className="list-item">
-                <div><li> Chocolate Caramel Crust Donut <br/> Quantity: 2 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Blueberry Crush Donut <br/> Quantity: 3 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
+              )}
             </ul>
           </div>
           <div className="order-done-button">
             <button>Order Done</button>
           </div>
         </div>
-        </div>
-
-        <div>
-        <div className="order-item">
-          <div className="order-num"><h3>Order #347189</h3></div>
-          <div className="order-list">
-            <ul>
-              <div className="list-item">
-                <div><li> Vanilla Icing with Buttercream and Cookies Donut <br/> Quantity: 4 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Chocolate Caramel Crust Donut <br/> Quantity: 2 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Blueberry Crush Donut <br/> Quantity: 3 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-            </ul>
-          </div>
-          <div className="order-done-button">
-            <button>Order Done</button>
-          </div>
-        </div>
-        </div>
-
-        <div>
-        <div className="order-item">
-          <div className="order-num"><h3>Order #347189</h3></div>
-          <div className="order-list">
-            <ul>
-              <div className="list-item">
-                <div><li> Vanilla Icing with Buttercream and Cookies Donut <br/> Quantity: 4 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Chocolate Caramel Crust Donut <br/> Quantity: 2 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Blueberry Crush Donut <br/> Quantity: 3 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Vanilla Icing with Buttercream and Cookies Donut <br/> Quantity: 4 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Chocolate Caramel Crust Donut <br/> Quantity: 2 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>
-              <div className="list-item">
-                <div><li> Blueberry Crush Donut <br/> Quantity: 3 </li></div>
-                <div><input type="checkbox" id="item1" /></div>
-              </div>              
-            </ul>
-          </div>
-          <div className="order-done-button">
-            <button>Order Done</button>
-          </div>
-        </div>
-        </div>
+        ))}
       </div>
     </div>
-  );
-};
-
-export default Orders;
+  )};
+}

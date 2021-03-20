@@ -16,11 +16,9 @@ export default class Registration extends Component {
         password: '',
         first_name: '',
         last_name: '',
-        user_type: 'customer', //need to determine the path
+        user_type: 'employee',
         email: '',
-        logged_in: false,
-        timed_out: [],
-        redirect: false
+        logged_in: false
       };
     }
     
@@ -51,14 +49,12 @@ export default class Registration extends Component {
           password: this.state.password,
           first_name: this.state.first_name,
           last_name: this.state.last_name,
-          user_type: 'customer', //hardcoded here. will have separate page for employees
+          user_type: 'employee', //hardcoded here. will have separate page for employees
           email: this.state.email
       }).then(response => 
       {
         cookies.set('token',response.data.token,{ path: "/" })
         this.setState({logged_in: true});
-        this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
-        this.render()
       })
       .catch(function(error) {
         console.log(error);
@@ -67,18 +63,10 @@ export default class Registration extends Component {
   
     render() {
       if (this.state.logged_in && this.state.user_type === "customer") {
-        return this.state.redirect
-        ? <Redirect to="/" />
-        : <div>
-        <div className="login-head"><h2>Registered! <br/> Logging in and redirecting in a few seconds... </h2></div>
-        </div> 
+        return <Redirect to="/" />
       }
       else if (this.state.logged_in && this.state.user_type === "employee") {
-        return this.state.redirect
-        ? <Redirect to="/employee/orders" />
-        : <div>
-        <div className="login-head"><h2>Registered! <br/> Logging in and redirecting in a few seconds... </h2></div>
-        </div> 
+        return <Redirect to="/employee/orders" />
       }
       return (
       

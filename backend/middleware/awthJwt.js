@@ -4,7 +4,7 @@ const db = require('../models')
 const User = db.user
 
 const verifyToken = (req, res, next) => {
-  const token = req.cookies.token || ''
+  const token = req.body.token || ''
 
   if (!token) {
     return res.status(403).send({
@@ -18,7 +18,7 @@ const verifyToken = (req, res, next) => {
         message: 'Unauthorized!'
       })
     } else {
-      req.username = decoded.username
+      req.body.username = decoded.username
       return next()
     }
   })
@@ -27,32 +27,32 @@ const verifyToken = (req, res, next) => {
 const isEmployee = (req, res, next) => {
   User.findOne({
     where: {
-      username: req.username
+      username: req.body.username
     }
   }).then(user => {
-    if (user.user_type === 'employee') {
-      return next()
+    if (!user || user.user_type !== 'employee') {
+      return res.status(403).send({
+        message: 'Require Employee Role!'
+      })
     }
 
-    return res.status(403).send({
-      message: 'Require Employee Role!'
-    })
+    return next()
   })
 }
 
 const isCustomer = (req, res, next) => {
   User.findOne({
     where: {
-      username: req.username
+      username: req.body.username
     }
   }).then(user => {
-    if (user.user_type === 'customer') {
-      return next()
+    if (!user || user.user_type !== 'customer') {
+      return res.status(403).send({
+        message: 'Require Customer Role!'
+      })
     }
 
-    return res.status(403).send({
-      message: 'Require Customer Role!'
-    })
+    return next()
   })
 }
 
