@@ -43,6 +43,31 @@ exports.getCurrentOrder = (req, res) => {
     })
 }
 
+exports.getPlacedOrders = (req, res) => {
+  Order.findAll({
+    where: {
+      username: req.body.username,
+      payment_status: 'paid'
+    },
+    order: [
+      ['createdAt', 'DESC']
+    ],
+    include: Product
+  })
+    .then(order => {
+      if (!order) {
+        return res.status(404).send({ message: 'Order Not found.' })
+      }
+
+      res.status(200).send({
+        order: order
+      })
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message })
+    })
+}
+
 exports.addToOrder = (req, res) => {
   Order.findOne({
     where: {
