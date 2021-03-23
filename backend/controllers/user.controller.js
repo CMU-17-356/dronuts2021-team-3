@@ -59,7 +59,8 @@ exports.addToOrder = (req, res) => {
           username: req.body.username
         })
           .then(order => {
-            if (!req.body.product_id) {
+            console.log(req.body.product_id)
+            if (req.body.product_id == null) {
               return res.status(404).send({ message: 'Product Not found.' })
             }
 
@@ -103,7 +104,7 @@ exports.addToOrder = (req, res) => {
             res.status(500).send({ message: err.message })
           })
       } else {
-        if (!req.body.product_id) {
+        if (req.body.product_id == null) {
           return res.status(404).send({ message: 'Product Not found.' })
         }
 
@@ -195,18 +196,6 @@ function createTransaction (totalCost) {
   }).then(res => res.data.id)
 }
 
-// Get our company's drones
-function getDrones () {
-  return axios.get('http://drones.17-356.isri.cmu.edu/api/airbases/team3')
-    .then(res => res.data.drones)
-}
-
-// Get a drone's status
-function getDroneStatus (droneId) {
-  return axios.get('http://drones.17-356.isri.cmu.edu/api/drones/' + droneId)
-    .then(res => res.data.current_delivery)
-}
-
 // Process a transaction
 function processTransaction (transactionId, username, creditCard) {
   return axios.post('http://credit.17-356.isri.cmu.edu/api/transactions/' + transactionId + '/process', {
@@ -215,15 +204,6 @@ function processTransaction (transactionId, username, creditCard) {
     credit_card: creditCard
   })
     .then(res => res.data.status)
-}
-
-// Send a drone
-function sendDrone (droneId) {
-  return axios.put('http://drones.17-356.isri.cmu.edu/api/drones/' + droneId + '/send', {
-    lat: 40.44,
-    lon: -79.94
-  })
-    .then(res => res.data.current_delivery)
 }
 
 exports.checkout = (req, res) => {
@@ -248,27 +228,7 @@ exports.checkout = (req, res) => {
           return processTransaction(transactionId, req.body.username, req.body.credit_card)
         })
         .then(processed => {
-          return getDrones()
-        })
-        .then(droneIds => {
-        // Find available drone
-          let i = 0
-          let drone = -1
-          while (drone === -1) {
-            i++
-            i = i % droneIds.length
-            drone = getDroneStatus(droneIds[i])
-              .then(droneStatus => {
-                if (droneStatus == null) return droneIds[i]
-                return -1
-              })
-          }
-          return i
-        })
-        .then(drone => {
-          return sendDrone(drone)
-        })
-        .then(result => {
+          order.update({ payment_status: 'paid', delivery_status: 'preparing' })
           return res.status(200).send({ message: 'Order completed.' })
         })
         .catch(err => {

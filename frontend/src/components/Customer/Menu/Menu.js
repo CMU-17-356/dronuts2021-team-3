@@ -48,10 +48,10 @@ export default class Menu extends Component {
   })
   .then(response => {
     console.log(id);
-    console.log(response);
+    console.log(response.error);
   })
-  .catch(function(error) {
-    console.log(error);
+  .catch(err => {
+    console.log(err);
   })
   };
 
