@@ -33,6 +33,15 @@ router.post(
 )
 
 router.post(
+  '/getplacedorders',
+  function (req, res, next) { authJwt.verifyToken(req, res, next) },
+  authJwt.isCustomer,
+  function (req, res, next) {
+    controller.getPlacedOrders(req, res, next)
+  }
+)
+
+router.post(
   '/addtoorder',
   function (req, res, next) { authJwt.verifyToken(req, res, next) },
   authJwt.isCustomer,

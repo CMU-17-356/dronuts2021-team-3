@@ -20,6 +20,13 @@ const NavbarCustomer = () => {
                   exact
               ><h3>Your Profile</h3></NavLink></div>
             <div className="nav-cust-items">
+            <NavLink
+                  className="navbar-item"
+                  activeClassName="is-active"
+                  to="/orderstatus"
+                  exact
+              ><h3>Order Status</h3></NavLink></div>
+            <div className="nav-cust-items">
               <NavLink
                   className="navbar-item"
                   activeClassName="is-active"

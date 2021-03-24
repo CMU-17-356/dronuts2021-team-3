@@ -28,6 +28,19 @@ export default class Orders extends Component {
     })
   };
 
+  handleButtonClick = (orderid) => {
+    axios.post("http://localhost:9000/employee/completeorder", {
+        token: cookies.get('token'),
+        order_id: orderid
+    }).then(response => {
+      console.log(response)
+      this.setState({ orders: [] })
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  };
+
   render() {
     return (
 
@@ -48,7 +61,7 @@ export default class Orders extends Component {
             </ul>
           </div>
           <div className="order-done-button">
-            <button>Order Done</button>
+            <button onClick={() => this.handleButtonClick(order.order_id)}>Order Done</button>
           </div>
         </div>
         ))}
