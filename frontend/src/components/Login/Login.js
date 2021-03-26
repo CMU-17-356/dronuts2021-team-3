@@ -21,7 +21,7 @@ export default class Registration extends Component {
       redirect: false
     };
   }
-  
+
   handleChangeUsername = event => {
     this.setState({username: event.target.value});
   }

@@ -6,7 +6,7 @@
 
 .nav-cust-menu {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(5, auto);
     grid-gap: 50px;
     justify-content: center;
     align-items: center;
