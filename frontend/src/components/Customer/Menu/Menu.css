@@ -6,6 +6,9 @@ html, body {
 
 .menu {
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   background-color: palevioletred;
 }
 
@@ -89,3 +92,13 @@ html, body {
     color: navy;
     font-style: italic;
 }
+
+@media only screen and (max-width: 600px) {
+  .container .overlay {
+      opacity: 0.85;
+  }
+
+  .menu-item {
+      opacity: .7;
+  }
+} 
