@@ -12,6 +12,10 @@ body
     background-blend-mode: color;   
 }
 
+.error-message {
+    color: palevioletred;
+}
+
 .register {
     display: grid;
     grid-template-columns:50% 50%;

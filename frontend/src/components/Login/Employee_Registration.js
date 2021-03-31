@@ -18,7 +18,8 @@ export default class Registration extends Component {
         last_name: '',
         user_type: 'employee',
         email: '',
-        logged_in: false
+        logged_in: false,
+        incorrect_input: false
       };
     }
     
@@ -55,18 +56,29 @@ export default class Registration extends Component {
       {
         cookies.set('token',response.data.token,{ path: "/" })
         this.setState({logged_in: true});
+        this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
+        this.render()
       })
-      .catch(function(error) {
+      .catch(error => {
+        this.setState({incorrect_input: true});
         console.log(error);
-      })
+      }) 
     };
   
     render() {
       if (this.state.logged_in && this.state.user_type === "customer") {
-        return <Redirect to="/" />
+        return this.state.redirect
+        ? <Redirect to="/" />
+        : <div>
+        <div className="login-head"><h2>Registered! <br/> Logging in and redirecting in a few seconds... </h2></div>
+        </div> 
       }
       else if (this.state.logged_in && this.state.user_type === "employee") {
-        return <Redirect to="/employee/orders" />
+        return this.state.redirect
+        ? <Redirect to="/employee/orders" />
+        : <div>
+        <div className="login-head"><h2>Registered! <br/> Logging in and redirecting in a few seconds... </h2></div>
+        </div> 
       }
       return (
       
@@ -85,12 +97,20 @@ export default class Registration extends Component {
             <div>
               <form onSubmit={this.handleButtonClick}>
                 <div className="register-header"><h2>Create Account</h2></div>
-                <div className="register-firstname"><input type="text" onChange={this.handleChangeFirstName} placeholder="Enter First Name"></input></div>
-                <div className="register-lastname"><input type="text" onChange={this.handleChangeLastName} placeholder="Enter Last Name"></input></div>
-                <div className="register-email"><input type="text" onChange={this.handleChangeEmail} placeholder="Enter Email"></input></div>
-                <div className="register-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Choose Username"></input></div>
+                <div className="register-firstname"><input type="text" onChange={this.handleChangeFirstName} required placeholder="Enter First Name"></input></div>
+                <div className="register-lastname"><input type="text" onChange={this.handleChangeLastName} required placeholder="Enter Last Name"></input></div>
+                <div className="register-email"><input type="text" onChange={this.handleChangeEmail} required placeholder="Enter Email"></input></div>
+                <div className="register-username"><input type="text" onChange={this.handleChangeUsername} required placeholder="Choose Username"></input></div>
                 <div className="register-password"><input type="password" id="pass" name="password"
             minlength="8" onChange={this.handleChangePassword} required placeholder="Choose Password"></input></div>
+                <div>      
+                    {this.state.incorrect_input &&
+                    <div className="error-message">
+                      Your username has been taken. Please pick another username.
+                    </div>
+                    }
+                </div>
+                
                 <div className="register-container">
                     <div></div>
                     <button className="register-button" type="submit" >Register</button>
