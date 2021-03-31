@@ -13,16 +13,15 @@ body
 }
 
 .login {
-    display: grid;
-    grid-template-columns:50% 50%;
+    display: flex;
     background-color: navy;
-    height: 100vh;
+    min-height: 100vh;
+    justify-content: space-evenly;
 }
 
 .login-left {
     text-align: center;
-    display: grid;
-    grid-template-rows: 33% 33% 33%;
+    max-width: 50%;
 }
 
 .login-left h2 {
@@ -37,8 +36,6 @@ body
 
 .login-form {
     text-align: center;
-    display: grid;
-    grid-template-rows: 33% 33% 33%;
 }
 
 .login-header {
@@ -56,7 +53,6 @@ body
 }
 
 .login-username input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -71,7 +67,6 @@ body
 }
 
 .login-password input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -112,6 +107,11 @@ body
     text-decoration: underline;
 }
 
+.login-form form{
+    display: flex;
+    flex-direction: column;
+}
+
 .login-button h3{
     color: navy;
     font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
@@ -124,10 +124,6 @@ body
 
 .button-container {
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
 }
 
 .login-button{
@@ -137,3 +133,15 @@ body
     width: fit-content;
     margin-left: 110px;
 }
+
+.split {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .login-left {
+        display: none;
+    }
+} 

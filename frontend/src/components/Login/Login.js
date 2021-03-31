@@ -81,19 +81,16 @@ export default class Registration extends Component {
               <div className="login-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Enter Username"></input></div>
               <div className="login-password"><input type="password" onChange={this.handleChangePassword} id="pass" name="password"
           minlength="8" required placeholder="Enter Password"></input></div>
-              <div className="create-account">
-              <NavLink
-                className="navbar-item"
-                activeClassName="is-active"
-                to="/register"
-                exact
-            ><p>Haven't made an account? Sign up here</p></NavLink></div>
-              <div className="button-container">
-                  <div></div>
-                  <button className="login-button" type="submit" >Sign In</button>
-                  </div>
-                  <div></div>
-                  </form>
+              <div className="split">
+                <NavLink
+                  className="navbar-item"
+                  activeClassName="is-active"
+                  to="/register"
+                  exact
+                ><p>Haven't made an account? Sign up here</p></NavLink>
+                <button className="login-button" type="submit" >Sign In</button>
+              </div>
+            </form>
          </div>
          <div></div>
       </div>
