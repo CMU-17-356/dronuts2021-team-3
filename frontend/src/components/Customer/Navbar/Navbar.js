@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Navbar.css';
 import Dronut_Logo from './Dronut_Logo.png'
 import { NavLink } from 'react-router-dom';
+import Cookies from 'universal-cookie'
 // component imports
 
-const NavbarCustomer = () => {
-  function openLinks() {
+const cookies = new Cookies()
+var token = []
+var component = []
+
+export default class NavbarCustomer extends Component {
+
+  openLinks() {
     var x = document.getElementById("nav-cust-items-group");
     if (x.style.display === "flex") {
       x.style.display = "none";
@@ -14,6 +20,27 @@ const NavbarCustomer = () => {
     }
   }
 
+  render() {
+    
+    token = cookies.get('token')
+
+    if(token == null)
+    {
+      component = <NavLink
+      className="navbar-item"
+      activeClassName="is-active"
+      to="/login"
+      exact><h3>Sign In</h3></NavLink>
+    }
+    else
+    {
+      component = <NavLink
+      className="navbar-item"
+      activeClassName="is-active"
+      to="/signedout"
+      exact><h3>Sign Out</h3></NavLink>
+    }
+  
   return (
     <div className="navbar-cust">
         <div id="nav-cust-left">
@@ -21,7 +48,7 @@ const NavbarCustomer = () => {
         </div>
 
         <div id="nav-cust-right" className="nav-cust-menu">
-          <button class="icon" onClick={() => openLinks()}>
+          <button class="icon" onClick={() => this.openLinks()}>
             <div></div>
             <div></div>
             <div></div>
@@ -53,6 +80,5 @@ const NavbarCustomer = () => {
         </div>
     </div>
   );
-};
-
-export default NavbarCustomer;
+  };
+};    

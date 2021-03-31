@@ -29,13 +29,16 @@ exports.getAllDrones = (req, res) => {
 
 exports.getPendingOrders = (req, res) => {
   Order.findAll({
+    where: {
+      payment_status: 'paid',
+      delivery_status: 'preparing'
+    },
     order: [
       ['order_id', 'ASC']
     ],
     include: Product
   })
     .then(order => {
-      console.log("found orders")
       res.status(200).send({
         order: order
       })
@@ -44,6 +47,27 @@ exports.getPendingOrders = (req, res) => {
       console.log("err:" + err)
       res.status(500).send({ message: err.message })
     })
+}
+
+// Get our company's drones
+function getDrones () {
+  return axios.get('http://drones.17-356.isri.cmu.edu/api/airbases/team3')
+    .then(res => res.data.drones)
+}
+
+// Get a drone's status
+function getDroneStatus (droneId) {
+  return axios.get('http://drones.17-356.isri.cmu.edu/api/drones/' + droneId)
+    .then(res => res.data.current_delivery)
+}
+
+// Send a drone
+function sendDrone (droneId) {
+  return axios.put('http://drones.17-356.isri.cmu.edu/api/drones/' + droneId + '/send', {
+    lat: 40.44,
+    lon: -79.94
+  })
+    .then(res => res.data.current_delivery)
 }
 
 exports.completeOrder = (req, res) => {
@@ -56,7 +80,29 @@ exports.completeOrder = (req, res) => {
       if (!order) {
         return res.status(404).send({ message: 'Order Not found.' })
       }
-      order.delivery_status = 'ready for delivery'
+      order.update({ delivery_status: 'ready for delivery' })
+      
+      return getDrones()
+    })
+    .then(droneIds => {
+    // Find available drone
+      let i = 0
+      let drone = -1
+      while (drone === -1) {
+        i++
+        i = i % droneIds.length
+        drone = getDroneStatus(droneIds[i])
+          .then(droneStatus => {
+            if (droneStatus == null) return droneIds[i]
+            return -1
+          })
+      }
+      return i
+    })
+    .then(drone => {
+      return sendDrone(drone)
+    })
+    .then(sent => {
       res.status(200).send({
         message: 'Order marked as ready for delivery.'
       })

@@ -17,6 +17,8 @@ import EmployeeLogin from './components/Login/Employee_Login';
 import EmployeeRegistration from './components/Login/Employee_Registration';
 import Registration from './components/Login/Registration';
 import Profile from './components/Customer/Profile/Profile';
+import OrderStatus from './components/Customer/OrderStatus/OrderStatus';
+import SignOut from './components/Login/SignOut';
 
 function App() {
   if(true) {
@@ -43,6 +45,14 @@ function App() {
               <Route path="/profile" exact>
                 <NavbarCustomer />
                 <Profile />
+              </Route>
+              <Route path="/orderstatus" exact>
+                <NavbarCustomer />
+                <OrderStatus />
+              </Route>
+              <Route path="/signedout" exact>
+                <NavbarCustomer />
+                <SignOut />
               </Route>
               <Route path="/employee/orders" exact>
                 <NavbarEmployee />
