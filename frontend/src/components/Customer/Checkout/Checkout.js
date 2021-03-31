@@ -90,7 +90,7 @@ export default class Checkout extends Component {
         <thead>
           <tr>
             <th>ITEM </th>
-            <th>IMAGE</th>
+            <th className="image-col">IMAGE</th>
             <th className="quantity-col">QUANTITY</th>
             <th className="price-col">PRICE</th>
             <th className="price-col">AMOUNT</th>
@@ -99,7 +99,7 @@ export default class Checkout extends Component {
         {this.state.order.products.map((product, index) => (
           <tr>
           <td className="item-col">{product.name}</td>
-          <td><img className="image-item" src={Donut_1} alt=""></img></td>
+          <td className="image-col"><img className="image-item" src={Donut_1} alt=""></img></td>
           <td className="quantity-col">{product.OrderProduct.quantity}</td>
           <td className="price-col">${product.price}</td>
           <td className="amount-col">${product.price*product.OrderProduct.quantity}</td>
