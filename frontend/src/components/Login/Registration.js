@@ -20,7 +20,8 @@ export default class Registration extends Component {
         email: '',
         logged_in: false,
         timed_out: [],
-        redirect: false
+        redirect: false,
+        incorrect_input: false
       };
     }
     
@@ -60,9 +61,10 @@ export default class Registration extends Component {
         this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
         this.render()
       })
-      .catch(function(error) {
+      .catch(error => {
+        this.setState({incorrect_input: true});
         console.log(error);
-      })
+      }) 
     };
   
     render() {
@@ -97,12 +99,21 @@ export default class Registration extends Component {
             <div>
               <form onSubmit={this.handleButtonClick}>
                 <div className="register-header"><h2>Create Account</h2></div>
-                <div className="register-firstname"><input type="text" onChange={this.handleChangeFirstName} placeholder="Enter First Name"></input></div>
-                <div className="register-lastname"><input type="text" onChange={this.handleChangeLastName} placeholder="Enter Last Name"></input></div>
-                <div className="register-email"><input type="text" onChange={this.handleChangeEmail} placeholder="Enter Email"></input></div>
-                <div className="register-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Choose Username"></input></div>
+                <div className="register-firstname"><input type="text" onChange={this.handleChangeFirstName} required placeholder="Enter First Name"></input></div>
+                <div className="register-lastname"><input type="text" onChange={this.handleChangeLastName} required placeholder="Enter Last Name"></input></div>
+                <div className="register-email"><input type="text" onChange={this.handleChangeEmail} required placeholder="Enter Email"></input></div>
+                <div className="register-username"><input type="text" onChange={this.handleChangeUsername} required placeholder="Choose Username"></input></div>
                 <div className="register-password"><input type="password" id="pass" name="password"
             minlength="8" onChange={this.handleChangePassword} required placeholder="Choose Password"></input></div>
+                <div>      
+                    {this.state.incorrect_input &&
+                    <div className="error-message">
+                      Your username has been taken. Please pick another username.
+                </div>
+                    }
+             </div>
+                
+                
                 <div className="register-container">
                   <button className="register-button" type="submit" >Register</button>
                 </div>

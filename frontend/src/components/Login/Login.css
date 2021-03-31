@@ -12,6 +12,10 @@ body
     background-blend-mode: color;   
 }
 
+.error-message {
+    color: palevioletred;
+}
+
 .login {
     display: flex;
     background-color: navy;
