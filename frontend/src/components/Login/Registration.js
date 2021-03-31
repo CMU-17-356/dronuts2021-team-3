@@ -104,12 +104,9 @@ export default class Registration extends Component {
                 <div className="register-password"><input type="password" id="pass" name="password"
             minlength="8" onChange={this.handleChangePassword} required placeholder="Choose Password"></input></div>
                 <div className="register-container">
-                    <div></div>
-                    <button className="register-button" type="submit" >Register</button>
-                    </div>
-                    <div></div> 
-                    
-                    </form>
+                  <button className="register-button" type="submit" >Register</button>
+                </div>
+              </form>
            </div>
            <div></div>
         </div>
