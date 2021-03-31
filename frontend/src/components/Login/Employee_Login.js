@@ -16,7 +16,8 @@ export default class Registration extends Component {
       username: '',
       password: '',
       user_type: 'employee',
-      logged_in: false
+      logged_in: false,
+      incorrect_input: false
     };
   }
   
@@ -37,17 +38,29 @@ export default class Registration extends Component {
     {
       cookies.set('token',response.data.token,{ path: "/" })
       this.setState({logged_in: true});
+      this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
+      this.render()
     })
-    .catch(function(error) {
-    })
+    .catch(error => {
+      this.setState({incorrect_input: true})
+      console.log(error)
+    }) 
   };
 
   render() {
     if (this.state.logged_in && this.state.user_type === "customer") {
-      return <Redirect to="/" />
+      return this.state.redirect
+        ? <Redirect to="/" />
+        : <div>
+        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
+        </div> 
     }
     else if (this.state.logged_in && this.state.user_type === "employee") {
-      return <Redirect to="/employee/orders" />
+      return this.state.redirect
+        ? <Redirect to="/employee/orders" />
+        : <div>
+        <div className="login-head"><h2>Logged in! <br/> Redirecting in a few seconds... </h2></div>
+        </div> 
     }
     return (
       <div className="login">
@@ -65,9 +78,17 @@ export default class Registration extends Component {
           <div>
           <form onSubmit={this.handleButtonClick}>
               <div className="login-header"><h2>Login</h2></div>
-              <div className="login-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Enter Username"></input></div>
+              <div className="login-username"><input type="text" onChange={this.handleChangeUsername} required placeholder="Enter Username"></input></div>
               <div className="login-password"><input type="password" onChange={this.handleChangePassword} id="pass" name="password"
           minlength="8" required placeholder="Enter Password"></input></div>
+              <div>      
+                {this.state.incorrect_input &&
+                    <div className="error-message">
+                      Your password or username was incorrect.
+                    </div>
+                  }
+             </div>
+
               <div className="create-account">
               <NavLink
                 className="navbar-item"
