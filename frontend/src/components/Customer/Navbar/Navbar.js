@@ -69,6 +69,13 @@ export default class NavbarCustomer extends Component {
                   to="/login"
                   exact
               ><h3>Sign In</h3></NavLink></div>
+            <div className="nav-cust-items">
+            <NavLink
+                  className="navbar-item"
+                  activeClassName="is-active"
+                  to="/orderstatus"
+                  exact
+              ><h3>Your Orders</h3></NavLink></div>
             <div className="nav-cust-button">
             <NavLink
                   className="navbar-item"
