@@ -62,15 +62,15 @@ export default class Menu extends Component {
     <div className="menu">
       {this.state.menu.map((product, index) => (
       <div key={index} className="container">
-        <div key={index} ><img key={index} className="menu-item" src={Donut_1} alt=""></img></div>
+        <img key={index} className="menu-item" src={Donut_1} alt=""></img>
         <div key={index} className="overlay">
           <div key={index} className="text">
-          <div key={index} className="item-text">{product.name} <br/> ${product.price} </div>
+            <div key={index} className="item-text">{product.name} <br/> ${product.price} </div>
           </div>
-          <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleButtonClick(product.product_id)} type="submit">Add to Cart</button></div>
-        </div>
+          <button id="add-to-cart" onClick={this.handleButtonClick(product.product_id)} type="submit">Add to Cart</button>
       </div>
-      ))}
+    </div>
+    ))}
     </div>
     </div>
   )
