@@ -97,6 +97,8 @@ body
     flex-direction: column;
     flex-wrap: wrap;
     padding: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .order-item {
