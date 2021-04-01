@@ -96,7 +96,7 @@ export default class Registration extends Component {
                   activeClassName="is-active"
                   to="/register"
                   exact
-                ><p>Haven't made an account? Sign up here</p></NavLink></div>
+                ><p>Haven't made an account? Sign up here</p></NavLink>
                 <button className="login-button" type="submit" >Sign In</button>
               </div>
             </form>

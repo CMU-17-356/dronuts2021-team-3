@@ -56,19 +56,8 @@ export default class NavbarCustomer extends Component {
           <div id="nav-cust-items-group">
             <div className="nav-cust-items"><a href="/#"><h3>Menu</h3></a></div>
             <div className="nav-cust-items">
-            <NavLink
-                  className="navbar-item"
-                  activeClassName="is-active"
-                  to="/profile"
-                  exact
-              ><h3>Your Profile</h3></NavLink></div>
-            <div className="nav-cust-items">
-              <NavLink
-                  className="navbar-item"
-                  activeClassName="is-active"
-                  to="/login"
-                  exact
-              ><h3>Sign In</h3></NavLink></div>
+              {component}
+            </div>
             <div className="nav-cust-items">
             <NavLink
                   className="navbar-item"
