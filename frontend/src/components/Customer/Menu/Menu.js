@@ -17,45 +17,260 @@ import Cookies from 'universal-cookie'
 // component imports
 
 const cookies = new Cookies()
+var count = 1
 
 export default class Menu extends Component {
 
   constructor() {
     super();
     this.state = {
-      menu: []
+      menu: [],
+      quantity: new Map([]),
+      order: []
     };
-  }
+
+    this.setQuantityValue = this.setQuantityValue.bind(this)
+    this.getQuantityValue = this.getQuantityValue.bind(this)
+    this.handleAddButtonClick = this.handleAddButtonClick.bind(this)
+    this.handleChangeQuantity = this.handleChangeQuantity.bind(this)
+    this.handleRemoveButtonClick = this.handleRemoveButtonClick.bind(this)
+  } 
+
 
   componentDidMount = () => {
-      axios.get("http://localhost:9000/user/getmenu")
+    console.log("In CDM")
+    var order_map = new Map([])
+    if(cookies.get('token') != null) {
+      console.log("In CDM IF")
+      axios.post("http://localhost:9000/user/getcurrentorder", {
+        token: cookies.get('token')
+      })
       .then(response => {
           this.setState({
-          menu: response.data.product
-          });
+            order: response.data.order
+          })
+          console.log(this.state.order)
       })
       .catch(function(error) {
           console.log(error);
       })
+      
+    }
+
+    axios.get("http://localhost:9000/user/getmenu")
+    .then(response => {
+        this.setState({
+        menu: response.data.product
+        });
+    })
+    .catch(function(error) {
+        console.log(error);
+    })
   };
 
-  handleButtonClick = (id) => (event) => {
+  setQuantityValue = (id, q) => {
+
+    var i;
+    var index = -1
+
+    if(this.state.order === 'undefined')
+      return 
+    
+    if(typeof this.state.order.products !== 'undefined')
+    {
+      for(i = 0; i < this.state.order.products.length; i++)
+      {
+        if(this.state.order.products[i].product_id == id){
+          index = i
+          break
+        }        
+      }
+    }
+    else {
+      return
+    }
+
+    var items = this.state.order.products
+    var item
+
+    console.log("Items ", items)
+    
+
+    if(index != -1)
+      item = {...this.state.order.products[index]}
+    else
+      return
+
+    console.log("Item", item)
+
+    if(typeof item !== 'undefined')
+      if(typeof item.OrderProduct !== 'undefined')
+        item.OrderProduct.quantity = q
+      else
+        return 
+    else
+      return 
+
+    items[index] = item
+      
+    this.setState({
+      order: {
+        products: items
+    }})
+
+    console.log("Order", this.state.order)
+  }
+
+  handleAddButtonClick = (id, q) => (event) => {
+
+    if(typeof q === 'undefined')
+      q = 0
+    
     event.preventDefault();
     console.log(id);
+    console.log("Quantity is ", q)
+
     axios.post("http://localhost:9000/user/addtoorder", {
       product_id: id,
+      quantity: q+1,
       token: cookies.get('token')
-  })
-  .then(response => {
-    console.log(id);
-    console.log(response.error);
-  })
-  .catch(err => {
-    console.log(err);
-  })
+    })
+    .then(response => {
+      console.log(id);
+      console.log(response.error);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+    this.setQuantityValue(id, q+1)
   };
 
+  handleRemoveButtonClick = (id, q) => (event) => {
+
+    if(typeof q === 'undefined')
+      q = 0
+    
+    event.preventDefault();
+    console.log(id);
+    console.log("Quantity is ", this.state.quantity.get(id))
+
+    if((q-1)>0) {
+      axios.post("http://localhost:9000/user/addtoorder", {
+        product_id: id,
+        quantity: q-1,
+        token: cookies.get('token')
+      })
+      .then(response => {
+        console.log(id);
+        console.log(response.error);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+    else if((q-1)==0) {
+
+      var i
+      var order_id = 0
+
+      for(i = 0; i < this.state.order.products.length; i++)
+      {
+        if(this.state.order.products[i].product_id == id){
+          order_id = this.state.order.products[i].OrderProduct.order_id
+          break
+        }        
+      }
+
+      axios.post("http://localhost:9000/user/removefromorder", {
+        order_id: order_id,
+        product_id: id,
+        token: cookies.get('token')
+      })
+      .then(response => {
+        console.log(id);
+        console.log(response.error);
+      })
+      .catch(err => {
+        console.log(err);
+      })      
+    }
+  else if(q == 0) {
+      this.setQuantityValue(id, q)
+      return
+    }
+
+    this.setQuantityValue(id, q-1)
+  };
+
+  handleChangeQuantity = (id, event) => {
+
+    if(typeof event === 'undefined')
+      return
+
+    var q = parseInt(event.target.value)
+
+    if(q > 0)
+    {
+      axios.post("http://localhost:9000/user/addtoorder", {
+        product_id: id,
+        quantity: q,
+        token: cookies.get('token')
+      })
+      .then(response => {
+        console.log(id);
+        console.log(response.error);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+      this.setQuantityValue(id, q)
+    }
+    else if(q == 0)
+    {
+      axios.post("http://localhost:9000/user/removefromorder", {
+        product_id: id,
+        token: cookies.get('token')
+      })
+      .then(response => {
+        console.log(id);
+        console.log(response.error);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+      this.setQuantityValue(id, q)
+    }
+    
+  }
+
+  getQuantityValue = (id) => {
+
+    var quantity = 0
+    var i
+
+    if(typeof this.state.order.products !== 'undefined')
+    {
+      for(i = 0; i < this.state.order.products.length; i++)
+      {
+        if(this.state.order.products[i].product_id == id){
+          quantity = this.state.order.products[i].OrderProduct.quantity
+          break
+        }        
+      }
+    }
+    else
+    {
+      return 0
+    }
+
+    return quantity
+  }
+
   render() {
+
   return (
     <div>
     <div className="menu-header"><h4>Go nuts for DRONUTS!</h4></div>
@@ -67,7 +282,11 @@ export default class Menu extends Component {
           <div key={index} className="text">
           <div key={index} className="item-text">{product.name} <br/> ${product.price} </div>
           </div>
-          <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleButtonClick(product.product_id)} type="submit">Add to Cart</button></div>
+          <div key={index} className="add-to-cart-grid">
+            <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleAddButtonClick(product.product_id, this.getQuantityValue(product.product_id))} type="submit">+</button></div>          
+            <div key={index} className="item-text"> {this.getQuantityValue(product.product_id)} </div>
+            <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleRemoveButtonClick(product.product_id, this.getQuantityValue(product.product_id))} type="submit">-</button></div>
+          </div>
         </div>
       </div>
       ))}

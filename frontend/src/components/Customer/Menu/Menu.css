@@ -96,3 +96,12 @@ html, body {
     color: navy;
     font-style: italic;
 }
+
+.add-to-cart-grid {
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+}
+
+.add-to-cart-grid input {
+  width: 80%;
+}
