@@ -89,7 +89,7 @@ export default class Checkout extends Component {
       <table>
         <thead>
           <tr>
-            <th>ITEM </th>
+            <th className="item-col">ITEM </th>
             <th className="image-col">IMAGE</th>
             <th className="quantity-col">QUANTITY</th>
             <th className="price-col">PRICE</th>
@@ -102,13 +102,13 @@ export default class Checkout extends Component {
           <td className="image-col"><img className="image-item" src={Donut_1} alt=""></img></td>
           <td className="quantity-col">{product.OrderProduct.quantity}</td>
           <td className="price-col">${product.price}</td>
-          <td className="amount-col">${product.price*product.OrderProduct.quantity}</td>
+          <td className="amount-col">${(product.price*product.OrderProduct.quantity).toFixed(2)}</td>
           </tr>
         ))}
       </table>
       </div>
       <div className="total-amount">
-        <h2>Total Amount: ${this.calculateTotal()}</h2>
+        <h2>Total Amount: ${this.calculateTotal().toFixed(2)}</h2>
       </div>
       <div className="place-order-button">
       <input type="text" onChange={this.handleChangeCreditCard} placeholder="Enter Credit Card Details"></input>
