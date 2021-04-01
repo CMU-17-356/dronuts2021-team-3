@@ -71,10 +71,12 @@ export default class Menu extends Component {
     if(this.state.order === 'undefined')
       return 
     
+    console.log(this.state.order.products)
     if(typeof this.state.order.products !== 'undefined')
     {
       for(i = 0; i < this.state.order.products.length; i++)
       {
+        console.log(this.state.order.products[i].product_id + " " + id)
         if(this.state.order.products[i].product_id === id){
           index = i
           break
@@ -92,8 +94,6 @@ export default class Menu extends Component {
       item = {...this.state.order.products[index]}
     else
       return
-
-    console.log("Item", item)
 
     if(typeof item !== 'undefined')
       if(typeof item.OrderProduct !== 'undefined')
@@ -128,14 +128,12 @@ export default class Menu extends Component {
       token: cookies.get('token')
     })
     .then(response => {
-      console.log(id);
-      console.log(response.error);
+      this.setQuantityValue(id, q+1)
     })
     .catch(err => {
       console.log(err);
     })
 
-    this.setQuantityValue(id, q+1)
   };
 
   handleRemoveButtonClick = (id, q) => (event) => {
