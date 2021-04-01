@@ -5,25 +5,20 @@ html, body {
 }
 
 .menu {
-    width: 100%;
-    background-color: palevioletred;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(341px, 1fr));
-    grid-gap: 1.5rem;
-    justify-items: center;
-    margin: 0;
-    padding: 0;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: palevioletred;
+}
 
 .container {
-    position: relative;
-    margin: 10px;
-  }
+  position: relative;
+  margin: 10px;
+}
 
 .overlay {
-    display: grid;
     position: absolute;
-    grid-template-rows: 2;
     top: 0;
     bottom: 0;
     left: 0;
@@ -33,9 +28,10 @@ html, body {
     opacity: 0;
     transition: .5s ease;
     background-color: #96e3fd;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
   }
 
 .overlay button {
@@ -96,6 +92,17 @@ html, body {
     color: navy;
     font-style: italic;
 }
+
+@media only screen and (max-width: 600px) {
+  .container .overlay {
+      opacity: 0.85;
+  }
+
+  .menu-item {
+      opacity: .7;
+  }
+} 
+
 
 .add-to-cart-grid {
   display: grid;

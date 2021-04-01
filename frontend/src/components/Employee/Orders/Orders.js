@@ -44,7 +44,7 @@ export default class Orders extends Component {
   render() {
     return (
 
-    <div className="orders">
+    <div className="view-orders">
       <div className="orders-header"><h1 >Orders</h1></div>
       <div className="order-grid">
 

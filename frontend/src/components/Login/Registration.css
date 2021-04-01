@@ -17,16 +17,15 @@ body
 }
 
 .register {
-    display: grid;
-    grid-template-columns:50% 50%;
+    display: flex;
     background-color: navy;
-    height: 100vh;
+    min-height: 100vh;
+    justify-content: space-evenly;
 }
 
 .register-left {
     text-align: center;
-    display: grid;
-    grid-template-rows: 20% 40% 40%;
+    max-width: 50%;
 }
 
 .register-left h2 {
@@ -41,8 +40,6 @@ body
 
 .register-form {
     text-align: center;
-    display: grid;
-    grid-template-rows: 20% 40% 40%;
 }
 
 .register-header {
@@ -60,7 +57,6 @@ body
 }
 
 .register-username input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -75,7 +71,6 @@ body
 }
 
 .register-firstname input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -90,7 +85,6 @@ body
 }
 
 .register-lastname input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -135,7 +129,6 @@ body
 }
 
 .register-email input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -150,7 +143,6 @@ body
 }
 
 .register-password input{
-    width: 30%;
     border-radius: 8px;
 }
 
@@ -177,10 +169,6 @@ body
 
 .register-container {
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
 }
 
 .register-button{
@@ -195,3 +183,9 @@ body
     font-weight: bold;
     font-size: 150%;   
 }
+
+@media only screen and (max-width: 600px) {
+    .register-left {
+        display: none;
+    }
+} 

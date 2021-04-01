@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import './Login.css';
-import Dronut_Logo from './Dronut_Logo.png'
-import { NavLink } from 'react-router-dom';
-import axios from "axios";
 import Cookies from 'universal-cookie'
 import {Redirect} from 'react-router-dom'
 

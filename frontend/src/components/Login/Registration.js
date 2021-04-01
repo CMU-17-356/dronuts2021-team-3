@@ -115,12 +115,9 @@ export default class Registration extends Component {
                 
                 
                 <div className="register-container">
-                    <div></div>
-                    <button className="register-button" type="submit" >Register</button>
-                    </div>
-                    <div></div> 
-                    
-                    </form>
+                  <button className="register-button" type="submit" >Register</button>
+                </div>
+              </form>
            </div>
            <div></div>
         </div>

@@ -89,20 +89,17 @@ export default class Registration extends Component {
                       Your password or username was incorrect.
                     </div>
                   }
-             </div>
-              <div className="create-account">
-              <NavLink
-                className="navbar-item"
-                activeClassName="is-active"
-                to="/register"
-                exact
-            ><p>Haven't made an account? Sign up here</p></NavLink></div>
-              <div className="button-container">
-                  <div></div>
-                  <button className="login-button" type="submit" >Sign In</button>
-                  </div>
-                  <div></div>
-                  </form>
+              </div>
+              <div className="split">
+                <NavLink
+                  className="navbar-item"
+                  activeClassName="is-active"
+                  to="/register"
+                  exact
+                ><p>Haven't made an account? Sign up here</p></NavLink>
+                <button className="login-button" type="submit" >Sign In</button>
+              </div>
+            </form>
          </div>
          <div></div>
       </div>
