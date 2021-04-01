@@ -170,8 +170,20 @@ export default class Menu extends Component {
       })
     }
     else if((q-1)==0) {
+
+      var i
+      var order_id = 0
+
+      for(i = 0; i < this.state.order.products.length; i++)
+      {
+        if(this.state.order.products[i].product_id == id){
+          order_id = this.state.order.products[i].OrderProduct.order_id
+          break
+        }        
+      }
+
       axios.post("http://localhost:9000/user/removefromorder", {
-        order_id: this.state.order_id,
+        order_id: order_id,
         product_id: id,
         token: cookies.get('token')
       })
@@ -183,7 +195,7 @@ export default class Menu extends Component {
         console.log(err);
       })      
     }
-    else if(q == 0) {
+  else if(q == 0) {
       this.setQuantityValue(id, q)
       return
     }
@@ -272,7 +284,7 @@ export default class Menu extends Component {
           </div>
           <div key={index} className="add-to-cart-grid">
             <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleAddButtonClick(product.product_id, this.getQuantityValue(product.product_id))} type="submit">+</button></div>          
-            <div key={index} className="add-to-cart-text"><input key={index} id="quantity-val" type="text" onChange={this.handleChangeQuantity(product.product_id)} value={this.getQuantityValue(product.product_id)} placeholder="Enter Quantity"></input></div>
+            <div key={index} className="item-text"> {this.getQuantityValue(product.product_id)} </div>
             <div key={index} className="add-to-cart-button"><button id="add-to-cart" onClick={this.handleRemoveButtonClick(product.product_id, this.getQuantityValue(product.product_id))} type="submit">-</button></div>
           </div>
         </div>
