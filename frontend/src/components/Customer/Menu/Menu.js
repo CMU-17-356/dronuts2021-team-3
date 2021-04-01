@@ -17,7 +17,6 @@ import Cookies from 'universal-cookie'
 // component imports
 
 const cookies = new Cookies()
-var count = 1
 
 export default class Menu extends Component {
 
@@ -38,10 +37,7 @@ export default class Menu extends Component {
 
 
   componentDidMount = () => {
-    console.log("In CDM")
-    var order_map = new Map([])
     if(cookies.get('token') != null) {
-      console.log("In CDM IF")
       axios.post("http://localhost:9000/user/getcurrentorder", {
         token: cookies.get('token')
       })
@@ -49,7 +45,6 @@ export default class Menu extends Component {
           this.setState({
             order: response.data.order
           })
-          console.log(this.state.order)
       })
       .catch(function(error) {
           console.log(error);
@@ -80,7 +75,7 @@ export default class Menu extends Component {
     {
       for(i = 0; i < this.state.order.products.length; i++)
       {
-        if(this.state.order.products[i].product_id == id){
+        if(this.state.order.products[i].product_id === id){
           index = i
           break
         }        
@@ -93,10 +88,7 @@ export default class Menu extends Component {
     var items = this.state.order.products
     var item
 
-    console.log("Items ", items)
-    
-
-    if(index != -1)
+    if(index !== -1)
       item = {...this.state.order.products[index]}
     else
       return
@@ -169,14 +161,14 @@ export default class Menu extends Component {
         console.log(err);
       })
     }
-    else if((q-1)==0) {
+    else if((q-1) === 0) {
 
       var i
       var order_id = 0
 
       for(i = 0; i < this.state.order.products.length; i++)
       {
-        if(this.state.order.products[i].product_id == id){
+        if(this.state.order.products[i].product_id === id){
           order_id = this.state.order.products[i].OrderProduct.order_id
           break
         }        
@@ -195,7 +187,7 @@ export default class Menu extends Component {
         console.log(err);
       })      
     }
-  else if(q == 0) {
+  else if(q === 0) {
       this.setQuantityValue(id, q)
       return
     }
@@ -227,7 +219,7 @@ export default class Menu extends Component {
 
       this.setQuantityValue(id, q)
     }
-    else if(q == 0)
+    else if(q === 0)
     {
       axios.post("http://localhost:9000/user/removefromorder", {
         product_id: id,
@@ -255,7 +247,7 @@ export default class Menu extends Component {
     {
       for(i = 0; i < this.state.order.products.length; i++)
       {
-        if(this.state.order.products[i].product_id == id){
+        if(this.state.order.products[i].product_id === id){
           quantity = this.state.order.products[i].OrderProduct.quantity
           break
         }        
