@@ -18,7 +18,8 @@ export default class Registration extends Component {
       user_type: 'customer',
       logged_in: false,
       timed_out: [],
-      redirect: false
+      redirect: false,
+      incorrect_input: false
     };
   }
 
@@ -42,9 +43,10 @@ export default class Registration extends Component {
       this.timed_out = setTimeout(() => this.setState({ redirect: true }), 3000)
       this.render()
     })
-    .catch(function(error) {
-      console.log(error);
-    })
+    .catch(error => {
+      this.setState({incorrect_input: true})
+      console.log(error)
+    }) 
   };
 
   render() {
@@ -78,9 +80,16 @@ export default class Registration extends Component {
           <div>
           <form onSubmit={this.handleButtonClick}>
               <div className="login-header"><h2>Login</h2></div>
-              <div className="login-username"><input type="text" onChange={this.handleChangeUsername} placeholder="Enter Username"></input></div>
+              <div className="login-username"><input type="text" onChange={this.handleChangeUsername} required placeholder="Enter Username"></input></div>
               <div className="login-password"><input type="password" onChange={this.handleChangePassword} id="pass" name="password"
           minlength="8" required placeholder="Enter Password"></input></div>
+              <div>      
+                {this.state.incorrect_input &&
+                    <div className="error-message">
+                      Your password or username was incorrect.
+                    </div>
+                  }
+             </div>
               <div className="create-account">
               <NavLink
                 className="navbar-item"
