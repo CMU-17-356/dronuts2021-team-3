@@ -3,7 +3,6 @@ import './Menu.css';
 import Donut_1 from './Donut_1.png'
 import axios from 'axios'
 import Cookies from 'universal-cookie'
-import { forInRight } from 'lodash';
 // import Donut_2 from './Donut_2.png'
 // import Donut_3 from './Donut_3.png'
 // import Donut_4 from './Donut_4.png'
@@ -18,6 +17,7 @@ import { forInRight } from 'lodash';
 // component imports
 
 const cookies = new Cookies()
+
 var count = 1
 var order = []
 var order_id = -1
@@ -42,7 +42,6 @@ export default class Menu extends Component {
 
 
   componentDidMount = () => {
-    console.log("In CDM")
 
     axios.get("http://localhost:9000/user/getmenu")
 
@@ -67,6 +66,7 @@ export default class Menu extends Component {
     })
 
     if(cookies.get('token') != null) {
+      this.getCurrentOrder()
       this.getCurrentOrder()
     }
   };
@@ -165,10 +165,7 @@ export default class Menu extends Component {
         console.log(err);
       })
     }
-    else if((q-1)==0) {
-
-      var i
-
+    else if((q-1) === 0) {
       axios.post("http://localhost:9000/user/removefromorder", {
         order_id: order_id,
         product_id: id,
@@ -229,7 +226,7 @@ export default class Menu extends Component {
           </div>
         </div>
       </div>
-      ))}
+    ))}
     </div>
     </div>
   )
