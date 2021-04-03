@@ -18,7 +18,7 @@ th {
 .orders {
   display: flex;
   flex-direction: column;
-  margin: 0 40px;
+  margin: 40px;
   padding: 20px;
   background-color: navy;
   border-radius: 20px;
@@ -29,12 +29,12 @@ th {
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  border-bottom: 1px solid #9f9f9f
   }
 
 .order > * {
   padding-right: 20px;
   width: 25%;
+  border-bottom: 1px solid #9f9f9f;
 }
 
 .menu-header {

@@ -13,10 +13,10 @@ body
 }
 
 .profile {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns:50% 50%;
     background-color: navy;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 .profile-left {
@@ -37,6 +37,8 @@ body
 
 .profile-form {
     text-align: center;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
 }
 
 .profile-header {
@@ -236,9 +238,3 @@ body
     width: fit-content;
     margin-left: 110px;
 }
-
-@media only screen and (max-width: 600px) {
-    .profile-left {
-        display: none;
-    }
-} 

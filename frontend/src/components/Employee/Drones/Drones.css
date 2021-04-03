@@ -34,6 +34,13 @@ body
     font-style: italic;
 }
 
+.drone-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(300px, 1fr));
+    grid-gap: 1.5rem;
+    margin: 20px;
+}
+
 .drone-num {
     background-color: palevioletred;
     align-items: center;
@@ -48,8 +55,9 @@ body
     border: navy;
     border-style: solid;
     background-color: navy;
-    max-width: 300px;
-    margin: 20px;
+}
+
+.drone-list {
 }
 
 .drone-list ul {
@@ -92,11 +100,4 @@ body
 .drone-list-item {
     display: grid;
     grid-template-columns: 4fr 1fr;
-}
-
-.drone-grid {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
 }

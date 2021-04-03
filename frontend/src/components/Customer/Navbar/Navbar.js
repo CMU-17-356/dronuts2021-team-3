@@ -11,15 +11,6 @@ var component = []
 
 export default class NavbarCustomer extends Component {
 
-  openLinks() {
-    var x = document.getElementById("nav-cust-items-group");
-    if (x.style.display === "flex") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "flex";
-    }
-  }
-
   render() {
     
     token = cookies.get('token')
@@ -40,41 +31,40 @@ export default class NavbarCustomer extends Component {
       to="/signedout"
       exact><h3>Sign Out</h3></NavLink>
     }
-  
-  return (
-    <div className="navbar-cust">
-        <div id="nav-cust-left">
-            <a href="/#"><img className="nav-cust-logo" src={Dronut_Logo} alt=""></img></a>
-        </div>
 
-        <div id="nav-cust-right" className="nav-cust-menu">
-          <button class="icon" onClick={() => this.openLinks()}>
-            <div></div>
-            <div></div>
-            <div></div>
-          </button>
-          <div id="nav-cust-items-group">
-            <div className="nav-cust-items"><a href="/#"><h3>Menu</h3></a></div>
-            <div className="nav-cust-items">
-              {component}
-            </div>
-            <div className="nav-cust-items">
-            <NavLink
-                  className="navbar-item"
-                  activeClassName="is-active"
-                  to="/orderstatus"
-                  exact
-              ><h3>Your Orders</h3></NavLink></div>
-            <div className="nav-cust-button">
-            <NavLink
-                  className="navbar-item"
-                  activeClassName="is-active"
-                  to="/checkout"
-                  exact
-              ><h3>Checkout</h3></NavLink></div>            
+  
+    return (
+      <div className="navbar-cust">
+          <div id="nav-cust-left">
+              <h4><a href="/#"><img className="nav-cust-logo" src={Dronut_Logo} alt=""></img></a></h4>
           </div>
-        </div>
-    </div>
-  );
-  };
+          <div id="nav-cust-right" className="nav-cust-menu">
+              <div className="nav-cust-items"><a href="/#"><h3>Menu</h3></a></div>
+              <div className="nav-cust-items">
+              <NavLink
+                    className="navbar-item"
+                    activeClassName="is-active"
+                    to="/profile"
+                    exact
+                ><h3>Your Profile</h3></NavLink></div>
+              <div className="nav-cust-items">
+              <NavLink
+                    className="navbar-item"
+                    activeClassName="is-active"
+                    to="/orderstatus"
+                    exact
+                ><h3>Order Status</h3></NavLink></div>
+              <div className="nav-cust-items">
+                {component}</div>
+              <div className="nav-cust-button">
+              <NavLink
+                    className="navbar-item"
+                    activeClassName="is-active"
+                    to="/checkout"
+                    exact
+                ><h3>Checkout</h3></NavLink></div>            
+          </div>
+      </div>
+    );
+    }
 };    

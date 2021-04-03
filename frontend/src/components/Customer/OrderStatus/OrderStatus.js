@@ -51,12 +51,12 @@ export default class OrderStatus extends Component {
       </div>
       {this.state.orders.map((order, index) => (
       <div key={index} className="order">
-        <div><p>Order {order.order_id}</p></div>
-        <div><p>${this.calculateTotal(order.products)}</p></div>
-        <div className="products-map">{order.products.map((product) => (
+        <p>Order {order.order_id}</p>
+        <p>${this.calculateTotal(order.products)}</p>
+        {order.products.map((product) => (
           <p>{product.name}: {product.OrderProduct.quantity}</p>
-        ))}</div>
-        <div><p>{order.delivery_status}</p></div>
+        ))}
+        <p>{order.delivery_status}</p>
       </div>
       ))}
     </div>

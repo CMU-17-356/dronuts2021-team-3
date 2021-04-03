@@ -12,7 +12,7 @@ body
     background-blend-mode: color;   
 }
 
-.view-orders {
+.orders {
     height: 100%;
     background-color: palevioletred;
 }
@@ -34,6 +34,13 @@ body
     font-style: italic;
 }
 
+.order-grid{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(400px, 1fr));
+    grid-gap: 1.5rem;
+    margin: 20px;
+}
+
 .order-num {
     background-color: palevioletred;
     align-items: center;
@@ -48,6 +55,9 @@ body
     border: navy;
     border-style: solid;
     background-color: navy;
+}
+
+.order-list {
 }
 
 .order-list ul {
@@ -90,17 +100,4 @@ body
 .list-item {
     display: grid;
     grid-template-columns: 4fr 1fr;
-}
-
-.order-grid {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-}
-
-.order-item {
-    max-width: 300px;
 }
