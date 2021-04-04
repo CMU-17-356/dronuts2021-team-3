@@ -1,5 +1,13 @@
 const request = require('supertest')
 const app = require('../app')
+const db = require('../models')
+
+
+beforeAll(done => {
+  done()
+})
+
+
 
 describe('Create an employee user if test_user is not created yet, otherwise login', () => {
   it('should create a new employee', async () => {
@@ -130,4 +138,10 @@ describe('Testing of employee functionalities', () => {
       expect(element.order_id).not.toBe(orderidLast)
     }
   })
+})
+
+afterAll(done => {
+  // Closing the DB connection allows Jest to exit successfully.
+  db.sequelize.close()
+  done()
 })

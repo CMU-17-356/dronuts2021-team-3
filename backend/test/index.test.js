@@ -1,9 +1,24 @@
-const request = require('supertest')
+const db = require('../models')
+
+const request = require("supertest");
 const app = require('../app')
 
-describe('Test the root path', () => {
-  test('It should response the GET method', async () => {
-    const response = await request(app).get('/')
-    expect(response.statusCode).toBe(200)
-  })
+beforeAll(done => {
+  done()
+})
+
+describe("Test the root path", () => {
+  test("It should response the GET method", () => {
+    return request(app)
+      .get("/")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+      });
+  });
+});
+
+afterAll(done => {
+  // Closing the DB connection allows Jest to exit successfully.
+  db.sequelize.close()
+  done()
 })

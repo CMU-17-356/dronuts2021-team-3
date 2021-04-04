@@ -1,5 +1,14 @@
 const request = require('supertest')
 const app = require('../app')
+const db = require('../models')
+
+beforeAll(done => {
+  done()
+})
+
+
+
+
 
 describe('Create a user if test_user is not created yet, otherwise login', () => {
   it('should create a new user', async () => {
@@ -213,4 +222,10 @@ describe('Test user/getMenu', () => {
       expect(element).toHaveProperty('name')
     }
   })
+})
+
+afterAll(done => {
+  // Closing the DB connection allows Jest to exit successfully.
+  db.sequelize.close()
+  done()
 })
