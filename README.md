@@ -11,7 +11,7 @@
 1. Run 'npm test' in the main directory
 
 ### Running the app
-1. Run 'npm start' in the main directory
+1. Run 'docker-compose up' in the main directory
 2. The frontend will run on localhost:3000
 3. The backend will run on localhost:9000
 
